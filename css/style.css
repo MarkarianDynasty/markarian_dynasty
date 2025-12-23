@@ -20,8 +20,8 @@ body {
 nav {
     display: flex; 
     justify-content: space-between; 
-    align-items: center; /* Keeps text perfectly centered vertically */
-    padding: 25px 50px; /* Added more breathing room */
+    align-items: center; 
+    padding: 30px 50px; /* Even more breathing room */
     background: var(--bg-parchment); 
     border-bottom: 1px solid rgba(0,0,0,0.05);
     position: sticky; 
@@ -31,19 +31,27 @@ nav {
 
 .logo { 
     font-family: var(--font-header); 
-    letter-spacing: 2px; 
+    letter-spacing: 3px; /* Wider, more regal spacing */
     font-weight: 700; 
     color: var(--charcoal);
-    font-size: 1.4rem; /* Increased size */
+    font-size: 1.8rem; /* Much larger now */
+    text-transform: uppercase;
 }
 
 .nav-links { 
     display: flex; 
-    gap: 25px; 
-    letter-spacing: 1px;
-    font-size: 1rem; /* Increased from 0.8rem to be legible */
-    font-weight: 600; /* Bolder to match the logo presence */
+    gap: 30px; 
+    font-size: 1.1rem; /* Base size for English */
+    font-weight: 600; 
+    color: var(--charcoal);
     align-items: center;
+}
+
+/* OPTICAL BALANCE: Shrink Armenian specifically in the menu */
+.nav-links .armenian-text {
+    font-size: 0.85em; /* 85% of the English size to match visual height */
+    vertical-align: middle;
+    font-weight: 500; /* Slightly thinner to match English weight */
 }
 
 /* GATEWAY GRID */
