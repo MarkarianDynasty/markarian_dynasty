@@ -18,12 +18,33 @@ body {
 
 /* NAV */
 nav {
-    display: flex; justify-content: space-between; padding: 20px 40px;
-    background: var(--bg-parchment); border-bottom: 1px solid rgba(0,0,0,0.05);
-    position: sticky; top: 0; z-index: 100;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; /* Keeps text perfectly centered vertically */
+    padding: 25px 50px; /* Added more breathing room */
+    background: var(--bg-parchment); 
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    position: sticky; 
+    top: 0; 
+    z-index: 100;
 }
-.logo { font-family: var(--font-header); letter-spacing: 2px; font-weight: 700; color: var(--charcoal); }
-.nav-links { display: flex; gap: 20px; font-size: 0.8rem; letter-spacing: 1px; }
+
+.logo { 
+    font-family: var(--font-header); 
+    letter-spacing: 2px; 
+    font-weight: 700; 
+    color: var(--charcoal);
+    font-size: 1.4rem; /* Increased size */
+}
+
+.nav-links { 
+    display: flex; 
+    gap: 25px; 
+    letter-spacing: 1px;
+    font-size: 1rem; /* Increased from 0.8rem to be legible */
+    font-weight: 600; /* Bolder to match the logo presence */
+    align-items: center;
+}
 
 /* GATEWAY GRID */
 .gateway-container {
