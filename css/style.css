@@ -13,6 +13,7 @@ body {
     margin: 0; padding: 0;
     font-family: var(--font-body);
     overflow-x: hidden;
+    background-color: var(--bg-parchment); /* Failsafe color */
 }
 
 /* NAV */
@@ -22,12 +23,13 @@ nav {
     position: sticky; top: 0; z-index: 100;
 }
 .logo { font-family: var(--font-header); letter-spacing: 2px; font-weight: 700; color: var(--charcoal); }
+.nav-links { display: flex; gap: 20px; font-size: 0.8rem; letter-spacing: 1px; }
 
 /* GATEWAY GRID (The 40/60 Split) */
 .gateway-container {
     display: grid;
     grid-template-columns: 4fr 6fr; /* 40% Left, 60% Right */
-    height: 90vh; /* Takes up most of the screen */
+    min-height: 90vh; /* Takes up most of the screen */
 }
 
 /* LEFT ZONE (Origins) */
@@ -38,7 +40,7 @@ nav {
     display: flex; flex-direction: column; justify-content: center;
     padding: 60px;
     overflow: hidden;
-    border-right: 4px solid var(--gold); /* The Divider */
+    border-right: 4px solid var(--gold);
 }
 
 /* RIGHT ZONE (Markar) */
@@ -54,16 +56,16 @@ nav {
 .visual-layer {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background-size: cover; background-position: center;
-    opacity: 0.3; /* Dim the tree so text is readable */
-    transition: opacity 0.5s ease;
+    opacity: 0.4; /* Dim the tree so text is readable */
+    transition: transform 5s ease;
 }
-.gateway-left:hover .visual-layer { opacity: 0.5; transform: scale(1.05); transition: 5s; }
+.gateway-left:hover .visual-layer { transform: scale(1.05); }
 
 .visual-layer-portrait {
     position: absolute; top: 0; right: 0; width: 50%; height: 100%;
     background-size: cover; background-position: center;
     opacity: 0.9;
-    mask-image: linear-gradient(to left, black 50%, transparent 100%); /* Fade effect */
+    mask-image: linear-gradient(to left, black 50%, transparent 100%);
     -webkit-mask-image: linear-gradient(to left, black 50%, transparent 100%);
 }
 
@@ -78,6 +80,7 @@ p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; }
 .btn {
     text-decoration: none; padding: 12px 30px; text-transform: uppercase; letter-spacing: 1px;
     display: inline-block; transition: 0.3s; border: 1px solid;
+    font-size: 0.8rem;
 }
 .btn-gold { color: var(--gold); border-color: var(--gold); }
 .btn-gold:hover { background: var(--gold); color: var(--bg-dark); }
@@ -89,15 +92,11 @@ p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; }
 .archive-footer { display: flex; background: #e5e5e5; padding: 40px; gap: 20px; }
 .archive-box { flex: 1; border-top: 2px solid var(--charcoal); padding-top: 10px; }
 
-/* --- MOBILE RESPONSIVENESS (The Stack) --- */
+/* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 768px) {
     .gateway-container { grid-template-columns: 1fr; height: auto; }
-    
-    /* Order: Origins First, then Markar */
     .gateway-left { padding: 80px 20px; min-height: 400px; border-right: none; border-bottom: 4px solid var(--gold); }
     .gateway-right { padding: 40px 20px; }
-    
     h1 { font-size: 2.5rem; }
-    .visual-layer-portrait { width: 100%; height: 300px; position: relative; mask-image: none; -webkit-mask-image: none; margin-bottom: 20px; }
-    .archive-footer { flex-direction: column; }
+    .visual-layer-portrait { width: 100%; height: 300px; position: relative; mask-image: none; -webkit-mask-image: none; margin-bottom: 20px; opacity: 1; }
 }
