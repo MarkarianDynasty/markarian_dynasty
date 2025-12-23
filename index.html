@@ -4,219 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Markarian Dynasty | 1602–Present</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Noto+Serif+Armenian:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* --- MUSEUM DESIGN SYSTEM --- */
-        :root {
-            --parchment: #F9F7F1; /* Soft off-white */
-            --pomegranate: #701C1C; /* Deep Armenian Red */
-            --charcoal: #2C2C2C; /* Text */
-            --slate: #4A5D85; /* Accent */
-            --gold: #C5A059; /* Subtle luxury */
-        }
-
-        body {
-            background-color: var(--parchment);
-            color: var(--charcoal);
-            font-family: 'Lato', sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .armenian-text {
-            font-family: 'Noto Serif Armenian', serif;
-        }
-
-        /* --- THE NAVIGATION (Minimalist) --- */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .logo {
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--pomegranate);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* --- THE HERO SECTION (The Stage) --- */
-        .hero {
-            text-align: center;
-            padding: 100px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            color: var(--charcoal);
-            margin-bottom: 10px;
-        }
-
-        .hero .subtitle {
-            font-size: 1.5rem;
-            color: var(--pomegranate);
-            margin-bottom: 40px;
-            font-style: italic;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 60px;
-        }
-
-        /* --- THE GREAT DIVIDE (The Two Paths) --- */
-        .portal-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-            padding: 0 20px 100px 20px;
-        }
-
-        .portal-card {
-            background: white;
-            border: 1px solid rgba(0,0,0,0.1);
-            width: 400px;
-            padding: 40px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        }
-
-        .portal-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--pomegranate);
-            box-shadow: 0 10px 30px rgba(112, 28, 28, 0.1);
-        }
-
-        .portal-year {
-            font-family: 'Playfair Display', serif;
-            color: var(--gold);
-            font-size: 1.2rem;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .portal-title {
-            font-size: 2rem;
-            color: var(--pomegranate);
-            margin-bottom: 15px;
-        }
-
-        .portal-desc {
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 30px;
-            border: 1px solid var(--charcoal);
-            text-decoration: none;
-            color: var(--charcoal);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.8rem;
-            transition: 0.3s;
-        }
-
-        .portal-card:hover .btn {
-            background-color: var(--pomegranate);
-            color: white;
-            border-color: var(--pomegranate);
-        }
-
-        /* --- AI INDICATOR --- */
-        .ai-badge {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--charcoal);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        /* Mobile Tweaks */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .portal-container { flex-direction: column; align-items: center; }
-            .portal-card { width: 100%; max-width: 350px; }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <nav>
-        <div class="logo">Markarian<span style="color:var(--charcoal)">Dynasty</span></div>
+        <div class="logo">MARKARIAN<span style="color:var(--pomegranate)">DYNASTY</span></div>
         <div class="nav-links">
-            <span>En / <span class="armenian-text">Հայ</span></span>
-            <span>Search</span>
+            <span>EN / <span class="armenian-text">ՀԱՅ</span></span>
+            <span>SEARCH</span>
         </div>
     </nav>
 
-    <section class="hero">
-        <h1 class="armenian-text">Մարգարեան Գերդաստան</h1>
-        <h1>The Markarian Dynasty</h1>
-        <div class="subtitle">Est. 1602 • Isfahan • Tehran • Global</div>
-        <p>A digital preservation of five centuries of history, bridging the ancient roots of the Bazikian family with the modern Markarian era.</p>
-    </section>
-
-    <section class="portal-container">
+    <main class="gateway-container">
         
-        <div class="portal-card">
-            <span class="portal-year">1602 – 1920</span>
-            <h2 class="portal-title">The Roots</h2>
-            <h3 class="portal-title armenian-text" style="font-size: 1.5rem; margin-top:-10px;">Բազիկեան</h3>
-            <p class="portal-desc">The ancient history of the Bazikian family in Isfahan. Manuscripts, early records, and the foundation of the lineage.</p>
-            <a href="#" class="btn">Enter the Prologue</a>
+        <section class="gateway-left">
+            <div class="content-wrapper">
+                <span class="era-label">1604 – 1900</span>
+                <h1>The Roots</h1>
+                <h2 class="armenian-text">Բազիկեան Արմատները</h2>
+                <p>The Great Migration of 1604. From the Highlands of Ararat to the <strong>Bourvari Cluster</strong> (Khomein-Aligudarz). A story of rural resilience and faith preserved in the heart of Iran.</p>
+                <a href="prologue.html" class="btn btn-gold">Explore the Origins</a>
+            </div>
+            <div class="visual-layer" style="background-image: url('assets/images/tree-full.jpg');"></div>
+        </section>
+
+        <section class="gateway-right">
+            <div class="visual-layer-portrait" style="background-image: url('assets/images/markar-portrait.jpg');"></div>
+            <div class="content-wrapper">
+                <span class="era-label">1900 – Present</span>
+                <h1>The Branches</h1>
+                <h2 class="armenian-text">Մարգարեան Գերդաստան</h2>
+                <p>The chronicle of <strong>Markar Markarian</strong>. From the villages of Markazi to the global diaspora. The living tree of his sons, daughters, and descendants.</p>
+                <a href="#" class="btn btn-dark">Enter the Markar Era</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="archive-footer">
+        <div class="archive-box">
+            <h3>The Six Pillars</h3>
+            <p>Biographies of the Sons & Daughters</p>
         </div>
-
-        <div class="portal-card">
-            <span class="portal-year">1920 – Present</span>
-            <h2 class="portal-title">The Branches</h2>
-            <h3 class="portal-title armenian-text" style="font-size: 1.5rem; margin-top:-10px;">Մարգարեան</h3>
-            <p class="portal-desc">The era of Markar. The interactive family tree, modern descendants, and the living history of the diaspora.</p>
-            <a href="#" class="btn">Explore the Core</a>
+        <div class="archive-box">
+            <h3>The Visual Vault</h3>
+            <p>Photographic History (1920–2025)</p>
         </div>
-
-    </section>
-
-    <div class="ai-badge">
-        <span>✦</span> AI Archivist Active
-    </div>
+    </footer>
 
 </body>
 </html>
