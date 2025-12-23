@@ -1,4 +1,4 @@
-/* MARKARIAN DYNASTY - GATEWAY DESIGN v2.0 */
+/* MARKARIAN DYNASTY - GATEWAY DESIGN v2.1 (Path Fix) */
 :root {
     --bg-parchment: #FDFCF5;
     --bg-dark: #1A1A1A;
@@ -13,7 +13,7 @@ body {
     margin: 0; padding: 0;
     font-family: var(--font-body);
     overflow-x: hidden;
-    background-color: var(--bg-parchment); /* Failsafe color */
+    background-color: var(--bg-parchment);
 }
 
 /* NAV */
@@ -25,11 +25,11 @@ nav {
 .logo { font-family: var(--font-header); letter-spacing: 2px; font-weight: 700; color: var(--charcoal); }
 .nav-links { display: flex; gap: 20px; font-size: 0.8rem; letter-spacing: 1px; }
 
-/* GATEWAY GRID (The 40/60 Split) */
+/* GATEWAY GRID */
 .gateway-container {
     display: grid;
     grid-template-columns: 4fr 6fr; /* 40% Left, 60% Right */
-    min-height: 90vh; /* Takes up most of the screen */
+    min-height: 90vh;
 }
 
 /* LEFT ZONE (Origins) */
@@ -52,11 +52,13 @@ nav {
     padding: 60px;
 }
 
-/* IMAGES AS BACKGROUND LAYERS */
+/* --- FIX IS HERE: IMAGES AS BACKGROUND LAYERS --- */
 .visual-layer {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background-size: cover; background-position: center;
-    opacity: 0.4; /* Dim the tree so text is readable */
+    opacity: 0.4;
+    /* Added ../ to step up one folder level */
+    background-image: url('../assets/images/tree-full.jpg');
     transition: transform 5s ease;
 }
 .gateway-left:hover .visual-layer { transform: scale(1.05); }
@@ -65,6 +67,8 @@ nav {
     position: absolute; top: 0; right: 0; width: 50%; height: 100%;
     background-size: cover; background-position: center;
     opacity: 0.9;
+    /* Added ../ to step up one folder level */
+    background-image: url('../assets/images/markar-portrait.jpg');
     mask-image: linear-gradient(to left, black 50%, transparent 100%);
     -webkit-mask-image: linear-gradient(to left, black 50%, transparent 100%);
 }
@@ -98,5 +102,7 @@ p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; }
     .gateway-left { padding: 80px 20px; min-height: 400px; border-right: none; border-bottom: 4px solid var(--gold); }
     .gateway-right { padding: 40px 20px; }
     h1 { font-size: 2.5rem; }
-    .visual-layer-portrait { width: 100%; height: 300px; position: relative; mask-image: none; -webkit-mask-image: none; margin-bottom: 20px; opacity: 1; }
+    /* Mobile Portrait adjustment */
+    .visual-layer-portrait { width: 100%; height: 400px; position: relative; mask-image: none; -webkit-mask-image: none; margin-bottom: 30px; opacity: 1; background-position: top center; }
+    .content-wrapper { max-width: 100%; }
 }
