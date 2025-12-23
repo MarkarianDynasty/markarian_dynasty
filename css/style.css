@@ -105,10 +105,23 @@ nav {
 
 /* TYPOGRAPHY */
 .content-wrapper { position: relative; z-index: 2; max-width: 500px; }
-.era-label { display: block; font-family: var(--font-header); font-style: italic; margin-bottom: 10px; opacity: 0.8; }
-h1 { font-family: var(--font-header); font-size: 3.5rem; margin: 0; line-height: 1.1; }
-.armenian-text { font-family: 'Noto Serif Armenian', serif; font-size: 1.8rem; margin: 10px 0 20px 0; font-weight: 400; }
-p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; }
+
+/* Updated Era Label: Base style */
+.era-label { 
+    display: block; 
+    font-family: var(--font-header); 
+    font-style: italic; 
+    margin-bottom: 15px; 
+}
+
+/* NEW: High Visibility Mode for the Dates */
+.visible-date {
+    font-size: 1.3rem; /* 30% larger */
+    opacity: 1; /* Fully visible, no dimming */
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Adds contrast against the tree image */
+}
 
 /* BUTTONS */
 .btn {
