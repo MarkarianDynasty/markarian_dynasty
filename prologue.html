@@ -15,11 +15,7 @@
 
             scrollArea.addEventListener('scroll', () => {
                 let currentRoomIndex = Math.round(scrollArea.scrollTop / window.innerHeight);
-                
-                // Remove active class from all years
                 years.forEach(year => year.classList.remove('active'));
-                
-                // Add active class to current year if it exists
                 if(years[currentRoomIndex]) {
                     years[currentRoomIndex].classList.add('active');
                 }
@@ -27,7 +23,9 @@
         });
     </script>
 </head>
-<body style="background-color: #1a1a1a; overflow: hidden;"> <div class="museum-container">
+<body style="background-color: #1a1a1a; overflow: hidden;">
+
+<div class="museum-container">
 
     <aside class="timeline-sidebar">
         <div class="logo" style="color:white; font-size:1.2rem; margin-bottom:40px;">
@@ -39,13 +37,16 @@
         <div class="timeline-year">The Focus<br><span style="font-size:0.8rem">5 Brothers</span></div>
     </aside>
 
-<main class="gallery-scroll-area">
+    <main class="gallery-scroll-area">
 
         <section class="museum-room">
-            <div class="slideshow-container">
+            <div class="slideshow-container cycle-6">
                 <div class="slide" style="background-image: url('assets/images/room-1-a.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-1-b.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-1-c.jpg');"></div>
+                <div class="slide" style="background-image: url('assets/images/room-1-d.jpg');"></div>
+                <div class="slide" style="background-image: url('assets/images/room-1-e.jpg');"></div>
+                <div class="slide" style="background-image: url('assets/images/room-1-f.jpg');"></div>
             </div>
             
             <div class="room-overlay vibe-gold" style="position:relative; z-index:2;">
@@ -57,10 +58,11 @@
         </section>
 
         <section class="museum-room">
-            <div class="slideshow-container">
+            <div class="slideshow-container cycle-4">
                 <div class="slide" style="background-image: url('assets/images/room-2-a.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-2-b.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-2-c.jpg');"></div>
+                <div class="slide" style="background-image: url('assets/images/room-2-d.jpg');"></div>
             </div>
 
             <div class="room-overlay vibe-chaos" style="position:relative; z-index:2;">
@@ -72,10 +74,13 @@
         </section>
 
         <section class="museum-room">
-             <div class="slideshow-container">
+             <div class="slideshow-container cycle-6">
                 <div class="slide" style="background-image: url('assets/images/room-3-a.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-3-b.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-3-c.jpg');"></div>
+                <div class="slide" style="background-image: url('assets/images/room-3-d.jpg');"></div>
+                <div class="slide" style="background-image: url('assets/images/room-3-e.jpg');"></div>
+                <div class="slide" style="background-image: url('assets/images/room-3-f.jpg');"></div>
             </div>
 
             <div class="room-overlay vibe-sepia" style="position:relative; z-index:2;">
@@ -99,6 +104,5 @@
 
     </main>
 </div>
-
 </body>
 </html>
