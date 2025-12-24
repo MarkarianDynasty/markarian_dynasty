@@ -149,3 +149,90 @@ nav {
     .visual-layer-portrait { width: 100%; height: 400px; position: relative; mask-image: none; -webkit-mask-image: none; margin-bottom: 30px; opacity: 1; background-position: top center; }
     .content-wrapper { max-width: 100%; }
 }
+
+/* --- SCROLL MUSEUM & TIMELINE (Prologue Page) --- */
+
+/* The Container that holds everything */
+.museum-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden; /* Locks the page so only the gallery scrolls */
+}
+
+/* LEFT SIDE: The Sticky Timeline */
+.timeline-sidebar {
+    width: 20%;
+    background-color: var(--bg-dark); /* Dark strip on the left */
+    color: var(--gold);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 40px;
+    border-right: 4px solid var(--gold);
+    z-index: 10;
+}
+
+.timeline-year {
+    margin: 20px 0;
+    opacity: 0.3; /* Dim by default */
+    transition: 0.3s;
+    font-family: var(--font-header);
+    list-style: none;
+    cursor: pointer;
+}
+.timeline-year.active {
+    opacity: 1; /* Bright when active */
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+.timeline-year::before {
+    content: '◇ ';
+    color: var(--pomegranate);
+}
+
+/* RIGHT SIDE: The Scrolling Galleries */
+.gallery-scroll-area {
+    width: 80%;
+    height: 100vh;
+    overflow-y: scroll; /* Allows scrolling */
+    scroll-snap-type: y mandatory; /* The "Snap" effect */
+    scroll-behavior: smooth;
+}
+
+/* The Individual Rooms */
+.museum-room {
+    height: 100vh; /* Full screen height */
+    width: 100%;
+    scroll-snap-align: start; /* Snaps to top */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Room Overlay (Darkens image so text is readable) */
+.room-overlay {
+    background: rgba(0,0,0,0.6); /* 60% Black Tint */
+    padding: 60px;
+    max-width: 600px;
+    color: #F9F7F1; /* Parchment White Text */
+    border-left: 5px solid var(--pomegranate);
+    backdrop-filter: blur(5px); /* Soft glass effect */
+}
+
+/* Specific Vibes */
+.vibe-gold { border-left-color: var(--gold); }
+.vibe-chaos { border-left-color: #8B0000; } /* Blood Red */
+.vibe-sepia { border-left-color: #C19A6B; } /* Earthy */
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+    .museum-container { flex-direction: column; }
+    .timeline-sidebar { width: 100%; height: 60px; flex-direction: row; padding: 10px; overflow-x: auto; align-items: center; gap: 20px; }
+    .timeline-year { margin: 0; font-size: 0.9rem; white-space: nowrap; }
+    .gallery-scroll-area { width: 100%; height: calc(100vh - 60px); }
+    .room-overlay { width: 85%; padding: 30px; }
+}
