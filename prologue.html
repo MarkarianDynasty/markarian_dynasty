@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     
     <script>
+        // FUNCTION 1: Scroll Spy (Lights up the button when you scroll manually)
         document.addEventListener('DOMContentLoaded', () => {
             const rooms = document.querySelectorAll('.museum-room');
             const years = document.querySelectorAll('.timeline-year');
@@ -21,6 +22,12 @@
                 }
             });
         });
+
+        // FUNCTION 2: Smooth Click (Takes you to the room when clicked)
+        function scrollToRoom(roomId) {
+            const room = document.getElementById(roomId);
+            room.scrollIntoView({ behavior: 'smooth' });
+        }
     </script>
 </head>
 <body style="background-color: #1a1a1a; overflow: hidden;">
@@ -31,14 +38,23 @@
         <div class="logo" style="color:white; font-size:1.2rem; margin-bottom:40px;">
             <a href="index.html" style="color:inherit; text-decoration:none;">← EXIT</a>
         </div>
-        <div class="timeline-year active">Pre-1604<br><span style="font-size:0.8rem">The Highlands</span></div>
-        <div class="timeline-year">1604<br><span style="font-size:0.8rem">The Exile</span></div>
-        <div class="timeline-year">1604–1900<br><span style="font-size:0.8rem">Bazikian Line</span></div>
+        
+        <div class="timeline-year active" onclick="scrollToRoom('room-1')">
+            Pre-1604<br><span style="font-size:0.8rem">The Highlands</span>
+        </div>
+        
+        <div class="timeline-year" onclick="scrollToRoom('room-2')">
+            1604<br><span style="font-size:0.8rem">The Exile</span>
+        </div>
+        
+        <div class="timeline-year" onclick="scrollToRoom('room-3')">
+            1604–1900<br><span style="font-size:0.8rem">Bazikian Line</span>
+        </div>
     </aside>
 
     <main class="gallery-scroll-area">
 
-        <section class="museum-room">
+        <section class="museum-room" id="room-1">
             <div class="slideshow-container cycle-6">
                 <div class="slide" style="background-image: url('assets/images/room-1-a.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-1-b.jpg');"></div>
@@ -56,7 +72,7 @@
             </div>
         </section>
 
-        <section class="museum-room">
+        <section class="museum-room" id="room-2">
             <div class="slideshow-container cycle-4">
                 <div class="slide" style="background-image: url('assets/images/room-2-a.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-2-b.jpg');"></div>
@@ -72,7 +88,7 @@
             </div>
         </section>
 
-        <section class="museum-room">
+        <section class="museum-room" id="room-3">
              <div class="slideshow-container cycle-6">
                 <div class="slide" style="background-image: url('assets/images/room-3-a.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-3-b.jpg');"></div>
