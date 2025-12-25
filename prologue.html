@@ -4,29 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Roots | Markarian Dynasty</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Noto+Serif+Armenian:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Noto+Serif+Armenian:wght@400;700&family=Playfair+Display:wght@400;700&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     
     <script>
-        // FUNCTION 1: Scroll Spy (Lights up the button when you scroll manually)
+        // Scroll Spy (Timeline)
         document.addEventListener('DOMContentLoaded', () => {
-            const rooms = document.querySelectorAll('.museum-room');
             const years = document.querySelectorAll('.timeline-year');
             const scrollArea = document.querySelector('.gallery-scroll-area');
-
             scrollArea.addEventListener('scroll', () => {
                 let currentRoomIndex = Math.round(scrollArea.scrollTop / window.innerHeight);
                 years.forEach(year => year.classList.remove('active'));
-                if(years[currentRoomIndex]) {
-                    years[currentRoomIndex].classList.add('active');
-                }
+                if(years[currentRoomIndex]) { years[currentRoomIndex].classList.add('active'); }
             });
         });
 
-        // FUNCTION 2: Smooth Click (Takes you to the room when clicked)
+        // Navigation Function
         function scrollToRoom(roomId) {
-            const room = document.getElementById(roomId);
-            room.scrollIntoView({ behavior: 'smooth' });
+            document.getElementById(roomId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // BOOK READER FUNCTIONS
+        function openBook(bookId) {
+            const modal = document.getElementById(bookId);
+            modal.style.display = 'flex';
+            setTimeout(() => { modal.classList.add('open'); }, 10); // Smooth fade in
+        }
+
+        function closeBook(bookId) {
+            const modal = document.getElementById(bookId);
+            modal.classList.remove('open');
+            setTimeout(() => { modal.style.display = 'none'; }, 500); // Wait for fade out
         }
     </script>
 </head>
@@ -38,18 +46,10 @@
         <div class="logo" style="color:white; font-size:1.2rem; margin-bottom:40px;">
             <a href="index.html" style="color:inherit; text-decoration:none;">← EXIT</a>
         </div>
-        
-        <div class="timeline-year active" onclick="scrollToRoom('room-1')">
-            Pre-1604<br><span style="font-size:0.8rem">The Highlands</span>
-        </div>
-        
-        <div class="timeline-year" onclick="scrollToRoom('room-2')">
-            1604<br><span style="font-size:0.8rem">The Exile</span>
-        </div>
-        
-        <div class="timeline-year" onclick="scrollToRoom('room-3')">
-            1604–1900<br><span style="font-size:0.8rem">Bazikian Line</span>
-        </div>
+        <div class="timeline-year active" onclick="scrollToRoom('room-1')">Pre-1604<br><span>The Highlands</span></div>
+        <div class="timeline-year" onclick="scrollToRoom('room-2')">1604<br><span>The Exile</span></div>
+        <div class="timeline-year" onclick="scrollToRoom('room-3')">1604–1900<br><span>Bazikian Line</span></div>
+        <div class="timeline-year" onclick="scrollToRoom('room-4')">Artifact<br><span>The Tree</span></div>
     </aside>
 
     <main class="gallery-scroll-area">
@@ -63,14 +63,38 @@
                 <div class="slide" style="background-image: url('assets/images/room-1-e.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-1-f.jpg');"></div>
             </div>
-            
             <div class="room-overlay vibe-gold" style="position:relative; z-index:2;">
                 <span class="era-label" style="color:var(--gold)">Before 1604</span>
                 <h1>The Highlands</h1>
                 <h2 class="armenian-text">Հայրենիք</h2>
-                <p>We come from a land older than most maps: a highland of stone and wind, where mountains stand like sentries and khachkars speak in silence. A memory of dignity.</p>
+                <p>We come from a land older than most maps: a highland of stone and wind...</p>
+                <button class="btn btn-gold" onclick="openBook('book-1')">📖 Read the Chronicle</button>
             </div>
         </section>
+
+        <div id="book-1" class="book-modal">
+            <div class="book-content">
+                <button class="close-book-btn" onclick="closeBook('book-1')">×</button>
+                <h2>The Highlands Chronicle</h2>
+                <hr>
+                <p>We come from a land older than most maps: a highland of stone and wind, where mountains stand like sentries and khachkars speak in silence. Armenia rose at the meeting place of worlds—between East and West, North and South—where empires collided and trade routes carried more than goods: they carried ideas, fears, and hope. In such a place, our ancestors learned a hard truth early—survival was not only fought. It was preserved, through language, faith, family, and the steady work of living. <p>
+<p>Before 1603—before the Great Surgun and the forced uprooting—Eastern Armenia was not a legend. It was a living homeland: orchards filling the valleys, villages gathered close around their churches, and monasteries—perched on ridges and cliffs—keeping watch over the passes in patient silence. Life could be harsh—taxes, raids, sudden war—but it still kept its rhythm: harvest and pilgrimage, baptism and wedding, market day and feast day. And above all, it had continuity—the quiet inheritance of names, prayers, and stories, passed from one generation to the next. <p>
+<p>That continuity was not accidental. It was built—deliberately—over centuries. <p>
+<p>Faith, language, and culture were not decorations of Armenian life. They were its backbone—and they are the reason an Armenian could live far from the homeland and still remain Armenian. <p>
+<p>Faith was not only worship; it was shelter and structure. When politics shifted and borders failed, the Armenian Church held the community together. Churches and monasteries were more than sanctuaries—they were schools, libraries, places of counsel, and vaults for memory. In a land fought over by empires, our ancestors anchored themselves in something armies could not easily dismantle. <p>
+<p>Language became a homeland you could carry. When Mesrop Mashtots gave Armenians an alphabet, it became more than letters—it became protection. Prayer and scripture, law and poetry, record and remembrance moved into Armenian. Manuscripts were copied and guarded, hidden and reopened, so that even in displacement Armenian life could continue in Armenian words. <p>
+<p>And culture lived in the everyday: songs and proverbs, feasts and fasts, the rituals of birth and mourning—bread and blessing at the table. A child learned who they were first in the voice of the family, then in the voice of the Church, and finally in the steady chorus of the community—until identity became something that could travel, endure, and remain Armenian even after centuries away. <p>
+<p>By the late 1500s, Eastern Armenia lived like a candle in a draft. Two empires—Ottoman to the west, Safavid Iran to the east—leaned in from either side, and the land between them was made to pay for their rivalry. Borders were not lines; they were wounds that opened and closed with each campaign. <p>
+<p>And still, Armenians lived. They planted and harvested. They rang church bells. They bartered in the market, copied manuscripts in monasteries, taught children their prayers, and returned to the same stones after each wave of trouble—because a homeland is not only soil; it is habit, memory, and the faces you bury beside your fathers. <p>
+<p>But empires do not measure a country by its homes. They measure it by what it can feed, shelter, and supply. When war returned, the question was no longer who would rule Eastern Armenia. The question became something colder: <p>
+<p>Would Eastern Armenia be allowed to remain inhabited at all? <p>
+<p>And so our family history begins where Armenia’s road bends into exile—at a river that became the boundary between life and loss. In the upheaval of the early seventeenth century, families were driven toward that crossing, and the river took “countless casualties” as people pushed into Persia. <p>
+<p>This is the doorway into our family tree. Among those uprooted were two brothers, Gabriel and Mikayel—the forefathers of what would become the Bazikian line. <p>
+<p>The next chapter follows them into Iran—into the places where Armenians tried to make a home again and where our ancestors learned to keep Armenia alive without its soil beneath their feet—carrying the homeland not on a map or a photo, but in memory, prayer, and name. <p>
+
+                </div>
+        </div>
+
 
         <section class="museum-room" id="room-2">
             <div class="slideshow-container cycle-4">
@@ -79,14 +103,31 @@
                 <div class="slide" style="background-image: url('assets/images/room-2-c.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-2-d.jpg');"></div>
             </div>
-
             <div class="room-overlay vibe-chaos" style="position:relative; z-index:2;">
                 <span class="era-label" style="color:#ff6b6b">1603 – 1604</span>
                 <h1>The Exile: Sürgün</h1>
                 <h2 class="armenian-text">Բռնագաղթ</h2>
-                <p>Then came the decree of Shah Abbas. The sky turned to smoke. We left our homes not by choice, but by the sword. Chaos, water, movement.</p>
+                <p>Then came the decree of Shah Abbas. The sky turned to smoke...</p>
+                <button class="btn btn-gold" onclick="openBook('book-2')">📖 Read the Chronicle</button>
             </div>
         </section>
+
+        <div id="book-2" class="book-modal">
+            <div class="book-content">
+                <button class="close-book-btn" onclick="closeBook('book-2')">×</button>
+                <h2>The Great Exile</h2>
+                <hr>
+                <p><p>The Great Surgun was not a migration. It was an unmaking. In a span of weeks, a living country was turned into a marching column—homes emptied, fields ruined, villages erased—so that an enemy would inherit not a province, but silence. Aṙakʽel of Tabriz records the deportations between 21 October and 19 November 1604—cold, rainy days on muddy roads—when hundreds of thousands moved in fear and confusion ahead of a retreating army. <p>
+<p>To understand how a whole people could be pushed onto the road, you have to begin one year earlier, with the rhythm of war. In the fall of 1603, Shah ʿAbbās I launched his campaign against the Ottomans: he captured Tabriz and Nakhijevan, and before advancing to Erevan he passed through Julfa, receiving three days of hospitality from Armenian merchants. He captured Erevan in June 1604 and advanced toward Kars—until an Ottoman counter-offensive forced him to retreat. <p>
+<p>It was in that retreat that policy became catastrophe. The shah adopted scorched earth to deny supplies to the advancing enemy—ordering crops and pastures destroyed, towns and villages broken “in a matter of days,” and the population driven eastward into Iran. <p>
+<p>More than 400,000 were deported; Julfa was completely demolished, and its entire population was forced to cross the Aras into Iran. And the crossing—always the crossing—became a wound in memory. Our family record remembers the Araks as taking “countless casualties,” with many swallowed by its rapid waters. Those who survived did not find peace on the far bank; they were forced onward through the Qaradāḡ Mountains toward winter shelter—Ḵalḵāl, Ahar, Meškin—walking into cold with no certainty except the next step. <p>
+<p>This is where our own story begins—because before this road, our record goes dark. Among the uprooted were two brothers, Gabriel and Mikayel, my ancestors. Of what lay behind them—parents, relatives, sisters, brothers—we have nothing certain: whether they were left in the homeland, buried there, or taken by the same river that carried so many away. <p>
+<p>So the Bazikian line enters history the way so many Armenian lines do: not with a beginning preserved, but with a crossing survived—and with two names that remain, standing on the far side of the Araks, ready for the next chapter. <p>
+
+</p>
+                </div>
+        </div>
+
 
         <section class="museum-room" id="room-3">
              <div class="slideshow-container cycle-6">
@@ -97,16 +138,70 @@
                 <div class="slide" style="background-image: url('assets/images/room-3-e.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-3-f.jpg');"></div>
             </div>
-
             <div class="room-overlay vibe-sepia" style="position:relative; z-index:2;">
                 <span class="era-label" style="color:#d4a373">1604 – 1900</span>
                 <h1>The Bazikian Line</h1>
                 <h2 class="armenian-text">Բազիկեան</h2>
-                <p>"We worked the land, but we did not own it." The struggle of the Bazikian family in the villages. The Lords took their share before our children could eat.</p>
-                <br>
-                <a href="markar-era.html" class="btn btn-gold" style="font-size:0.8rem; margin-top:20px;">Enter the Markar Era →</a>
+                <p>"Our family story does not begin with a birth record or a village register. It begins with a road—the kind of road that erases the neat edges of life and replaces them with one question: will we reach the other side? In the Great Surgun (Exil in Turkish) , when Eastern Armenia was emptied and driven toward Persia, the world became movement: bodies in cold weather, bundles in trembling hands, and the last look back at a homeland that could not be carried whole. <p>
+<p>From that uprooting, our family steps forward as two names. <p>
+<p>Gabriel and Mikayel. Two brothers, remembered not because we know everything about them, but because we know almost nothing before them. Before their entry into Persia, our record goes dark. We do not know who their parents were, how many sisters and brothers they had, or what their household looked like before exile. We do not know what the road took from them—whether they lost family before the march began, or at the crossings, or in the long hunger that follows displacement. That absence is not a gap in the story; it is part of the story. It is what exile does: it breaks the chain of ordinary memory. <p>
+<p>What we do have is the first rebuilding. <p>
+<p>The brothers moved with other Armenians into regions whose landscapes felt less foreign—places like Peria and then into Burvari, where Armenian families began to re-form village life again, settling in communities remembered by name: Parsegh. There, the old Armenian instincts returned: gather near one another, keep the hearth alive, rebuild a life around family and work and the quiet endurance that doesn’t announce itself.
+But exile does not end the moment you find shelter. For Mikayel, even with a wife and a child, the pull of homeland was stronger than the promise of safety. He chose risk over certainty and joined a small caravan—only a handful—attempting to make the impossible journey back to Armenia. After that, the record goes dark. No letter arrives. No name returns to the register. We do not know whether he reached home or was taken by the road—only that one branch of our tree disappears into silence, the way so many did in those years. <p>
+<p>Gabriel remains. He builds a household—marriage, work, a life stitched back together in exile. Two sons are named into the line: Petros and Markos. Markos later slips beyond the edge of our record—one of those lives history does not keep, leaving only a whispered possibility that he turned his face back toward the homeland. Petros, by contrast, becomes the anchor of the family’s visible line. He moves into northern Burvari, into the Aghati region, and settles in a village remembered for its fertility and calm: Aliabad. <p>
+<p>It is in Aliabad that the Bazikian story becomes intensely human—so human it hurts. <p>
+<p>Petros builds what the record calls his most peaceful life. His household grows large—twelve people gathered around one hearth. And then, in a moment so ordinary it could happen in any village, catastrophe enters through food. Petros slaughters a cow for the family to eat. The meat is poisoned. Those who eat it die. And in a scene that feels almost biblical in its starkness, only one remains alive: an infant in a cradle, spared simply because he did not eat. <p>
+<p>This is where our dynasty—our name—turns. <p>
+<p>The infant is carried away by an aunt to Ashnakhor—unbaptized, fragile, alive by a hair’s breadth. There is no certainty in that journey, only urgency: someone must keep the family line from going cold. The record remembers how he was fed goat milk, and how the village began to call him “Bozik-Bazik”—boz, “goat” in Persian—an improvised name for a child who survived by goat’s milk. In time, the nickname hardened into a family name. <p>
+<p>He grows up as Bazik, returns to Aliabad, and takes his place in his father’s world. Then life begins again, the only way it ever can after catastrophe: work and trade, marriage and children—everything rebuilt from the thinnest surviving thread. <p>
+<p>After Bazik rebuilt the line in Aliabad, the family grew again—Babakhan, then Mesrop, then Melkon—names added like stones laid back into a foundation. And then the story does what living stories always do: it branches. Melkon’s two sons—Grigor and Khudaghuli (Khoodan)—begin close, but life pulls them into different directions, until one branch remains in Aliabad and the other steps outward toward a new beginning: Nor Dehno— meaning new village in persian, an Armenian settlement still forming its first shape. Dehno becomes the second hearth of the Bazikian line: another village, another rhythm, another chance to remain Armenian by living—day after day—among your own. <p>
+<p>From the Dehno branch emerges the name that sets the line in place—Markar, the first of that name in our record, the one who anchors the Bazikian family in Dehno. <p>
+<p>Markar does not drift. He stays in Dehno, and in a family history built on movement and loss, staying becomes its own kind of statement. And then the lineage strengthens in the most human way possible: through children—five sons, named one by one, as if each name were a promise spoken into the future. Avet; Nazar; Isagholi; Khudaghuli; Artin. Five lives beginning under one roof, five branches growing from the same root—five ways the family refuses to disappear. <p>
+<p>When visitors stand before the family tree, this is the moment they feel it change from history into intimacy: not “a clan,” not “a migration,” but a father in Dehno and five sons whose names still reach us—carrying the story forward, generation by generation, toward the next chapter. <p>
+<p>Those five brothers become five living branches of one root. Their children and grandchildren grow up close enough to share more than blood: they share daily life—work, neighborly help, and the quiet certainty that family is not an idea but a presence. In Dehno, the tree is not abstract; it has a geography. Houses, paths, and fields become a map of kinship, and the name Bazikian becomes something you can feel in the closeness of people who do not drift far from one another. <p>
+<p>And when later generations begin to move—first toward Tehran, and then beyond—it is not an ending. It is a second kind of gathering. They settle near each other, buy homes in the same neighborhoods, and keep the old rhythm alive in new streets: baptisms and weddings, visits and feasts, condolences and funerals—all the moments where a family proves it is still one body, even when scattered across distance. It is as if Dehno itself has been carried forward—not in soil, but in habit, loyalty, and the refusal to let the branches grow alone. <p>
+<p>And at the heart of this later chapter stands the figure we return to again and again: the second Markar—the grandson of Khudaghuli, “Khoodan pap,” . In our telling, he is the hero not because his life was untouched by hardship, but because he becomes the hinge between eras—the thread that ties village memory to city life and the overseas. The one through whom the line stays clear and the story stays held. From him, we follow the family forward—one name, one household, one generation at a time. <p></p>
+                <button class="btn btn-gold" onclick="openBook('book-3')">📖 Read the Chronicle</button>
             </div>
         </section>
+
+        <div id="book-3" class="book-modal">
+            <div class="book-content">
+                <button class="close-book-btn" onclick="closeBook('book-3')">×</button>
+                <h2>The Bazikian Struggle</h2>
+                <hr>
+                <p><p>
+</p>
+                </div>
+        </div>
+
+
+        <section class="museum-room" id="room-4">
+            <div class="slideshow-container cycle-4">
+                <div class="slide" style="background-image: url('assets/images/room-4-a.jpg');"></div>
+                <div class="slide" style="background-image: url('assets/images/room-4-b.jpg');"></div>
+                <div class="slide" style="background-image: url('assets/images/room-4-a.jpg');"></div>
+                <div class="slide" style="background-image: url('assets/images/room-4-b.jpg');"></div>
+            </div>
+            <div class="room-overlay" style="position:relative; z-index:2; border-left-color:white;">
+                <span class="era-label" style="color:white">The Artifact</span>
+                <h1>The Family Tree</h1>
+                <h2 class="armenian-text">Տոհմածառ</h2>
+                <p>A manuscript preserved through centuries. Tracing the lineage from Gabriel (1603) to the modern era.</p>
+                <button class="btn btn-gold" onclick="openBook('book-4')">📖 Study the Lineage</button>
+                <br><br>
+                <a href="markar-era.html" class="btn btn-dark" style="font-size:0.8rem; background:white; color:black;">Enter the Markar Era →</a>
+            </div>
+        </section>
+
+        <div id="book-4" class="book-modal">
+            <div class="book-content">
+                <button class="close-book-btn" onclick="closeBook('book-4')">×</button>
+                <h2>The Family Tree Analysis</h2>
+                <hr>
+                <p>Paste the detailed explanation of the family tree branches here...</p>
+                </div>
+        </div>
 
     </main>
 </div>
