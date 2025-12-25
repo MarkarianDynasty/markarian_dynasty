@@ -248,3 +248,33 @@ p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; }
 @media (max-width: 768px) {
     .book-content { width: 85%; padding: 30px; height: 80vh; }
 }
+
+/* --- BILINGUAL ENGINE --- */
+
+/* Default State (English Active) */
+body.lang-en .content-hy { display: none !important; }
+body.lang-hy .content-en { display: none !important; }
+
+/* The Toggle Switch (Sidebar) */
+.lang-switch {
+    margin-bottom: 30px;
+    cursor: pointer;
+    font-family: var(--font-header);
+    border: 1px solid var(--gold);
+    padding: 8px 15px;
+    display: inline-block;
+    color: var(--gold);
+    transition: 0.3s;
+}
+.lang-switch:hover { background: rgba(197, 160, 89, 0.1); }
+
+/* Active State of the Switch Text */
+.lang-switch span { opacity: 0.4; margin: 0 5px; }
+.lang-switch span.active { opacity: 1; font-weight: bold; color: #fff; }
+
+/* Armenian Typography Adjustments */
+body.lang-hy h1, body.lang-hy h2, body.lang-hy p {
+    font-family: 'Noto Serif Armenian', serif !important;
+}
+/* Adjust font size for Armenian (often needs to be slightly smaller or larger) */
+body.lang-hy p { font-size: 1.1rem; line-height: 1.7; }
