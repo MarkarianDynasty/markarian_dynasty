@@ -218,8 +218,19 @@ p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; }
 }
 
 /* Typography for Reading */
-.book-content h2 { font-family: var(--font-header); color: var(--pomegranate); margin-top: 0; }
-.book-content p { font-family: 'Georgia', serif; font-size: 1.15rem; line-height: 1.8; margin-bottom: 25px; }
+.book-content h2 { 
+    font-family: var(--font-header); 
+    color: var(--pomegranate); 
+    margin-top: 0; 
+}
+
+.book-content p { 
+    font-family: 'EB Garamond', serif; /* The Upgrade */
+    font-size: 1.25rem; /* Slightly larger for readability */
+    line-height: 1.8; 
+    color: #1a1a1a;
+    margin-bottom: 25px; 
+}
 
 /* The Close Button (X) */
 .close-book-btn {
