@@ -191,3 +191,49 @@ p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; }
     .gallery-scroll-area { width: 100%; height: calc(100vh - 60px); }
     .room-overlay { width: 85%; padding: 30px; }
 }
+
+/* --- THE CHRONICLE READER (Book Mode) --- */
+
+/* The Hidden Overlay (Background) */
+.book-modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(26, 26, 26, 0.95); /* Dark dimming */
+    z-index: 2000; /* On top of everything */
+    display: none; /* Hidden by default */
+    justify-content: center; align-items: center;
+    opacity: 0; transition: opacity 0.5s ease;
+}
+
+/* The Paper/Page Itself */
+.book-content {
+    background: var(--bg-parchment);
+    color: var(--charcoal);
+    width: 60%; max-width: 800px; height: 85vh;
+    padding: 60px;
+    overflow-y: scroll; /* Allows scrolling long text */
+    position: relative;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    transform: translateY(50px); transition: transform 0.5s ease;
+    border: 1px solid var(--gold);
+}
+
+/* Typography for Reading */
+.book-content h2 { font-family: var(--font-header); color: var(--pomegranate); margin-top: 0; }
+.book-content p { font-family: 'Georgia', serif; font-size: 1.15rem; line-height: 1.8; margin-bottom: 25px; }
+
+/* The Close Button (X) */
+.close-book-btn {
+    position: absolute; top: 20px; right: 20px;
+    font-size: 2rem; cursor: pointer; color: var(--pomegranate);
+    background: none; border: none; font-weight: bold;
+}
+.close-book-btn:hover { transform: scale(1.1); }
+
+/* Animation State */
+.book-modal.open { display: flex; opacity: 1; }
+.book-modal.open .book-content { transform: translateY(0); }
+
+/* Mobile Reading */
+@media (max-width: 768px) {
+    .book-content { width: 85%; padding: 30px; height: 80vh; }
+}
