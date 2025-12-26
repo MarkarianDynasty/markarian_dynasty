@@ -7,22 +7,75 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Noto+Serif+Armenian:wght@400;700&family=Playfair+Display:wght@400;700&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     
+    <style>
+        /* LIGHTBOX STYLES (New Feature) */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000; /* Sit on top of everything */
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.95); /* Deep black background */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80vh;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+            object-fit: contain;
+        }
+        .lightbox-caption {
+            color: var(--gold);
+            margin-top: 15px;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+        .close-lightbox {
+            position: absolute;
+            top: 20px; right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .close-lightbox:hover { color: var(--gold); }
+
+        /* ARTIFACT THUMBNAILS IN ROOM 4 */
+        .artifact-grid {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .artifact-thumb {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.3);
+            cursor: zoom-in;
+            transition: 0.3s;
+        }
+        .artifact-thumb:hover {
+            border-color: var(--gold);
+            transform: scale(1.1);
+        }
+    </style>
+
     <script>
-        // LANGUAGE SWITCHER FUNCTION
+        // LANGUAGE SWITCHER
         function setLanguage(lang) {
             document.body.classList.remove('lang-en', 'lang-hy');
             document.body.classList.add('lang-' + lang);
-            
             document.getElementById('btn-en').classList.remove('active');
             document.getElementById('btn-hy').classList.remove('active');
             document.getElementById('btn-' + lang).classList.add('active');
         }
 
-        // Standard Scroll Spy & Navigation
         document.addEventListener('DOMContentLoaded', () => {
-            if (!document.body.classList.contains('lang-hy')) {
-                setLanguage('en'); 
-            }
+            if (!document.body.classList.contains('lang-hy')) { setLanguage('en'); }
 
             const years = document.querySelectorAll('.timeline-year');
             const scrollArea = document.querySelector('.gallery-scroll-area');
@@ -33,20 +86,32 @@
             });
         });
 
-        function scrollToRoom(roomId) {
-            document.getElementById(roomId).scrollIntoView({ behavior: 'smooth' });
-        }
+        function scrollToRoom(roomId) { document.getElementById(roomId).scrollIntoView({ behavior: 'smooth' }); }
 
+        // BOOK MODAL LOGIC
         function openBook(bookId) {
             const modal = document.getElementById(bookId);
             modal.style.display = 'flex';
             setTimeout(() => { modal.classList.add('open'); }, 10);
         }
-
         function closeBook(bookId) {
             const modal = document.getElementById(bookId);
             modal.classList.remove('open');
             setTimeout(() => { modal.style.display = 'none'; }, 500);
+        }
+
+        // LIGHTBOX LOGIC (ZOOM)
+        function openZoom(imageSrc, captionText) {
+            const modal = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const caption = document.getElementById('lightbox-caption');
+            
+            modal.style.display = 'flex';
+            img.src = imageSrc;
+            caption.innerHTML = captionText;
+        }
+        function closeZoom() {
+            document.getElementById('lightbox').style.display = 'none';
         }
     </script>
 </head>
@@ -58,60 +123,37 @@
         <div class="logo" style="color:white; font-size:1.2rem; margin-bottom:20px;">
             <a href="index.html" style="color:inherit; text-decoration:none;">← EXIT</a>
         </div>
-
-       <div class="lang-switch" onclick="document.body.classList.contains('lang-en') ? setLanguage('hy') : setLanguage('en')">
+        <div class="lang-switch" onclick="document.body.classList.contains('lang-en') ? setLanguage('hy') : setLanguage('en')">
             <span id="btn-en" class="active">EN</span> | <span id="btn-hy">ՀԱՅ</span>
         </div>
-
         <div class="timeline-year active" onclick="scrollToRoom('room-1')">
-            <span class="content-en">Pre-1604</span><span class="content-hy">1604-ից առաջ</span><br>
-            <span style="font-size:0.8rem">
-                <span class="content-en">The Highlands</span><span class="content-hy">Լեռնաշխարհ</span>
-            </span>
+            <span class="content-en">Pre-1604</span><span class="content-hy">1604-ից առաջ</span>
         </div>
         <div class="timeline-year" onclick="scrollToRoom('room-2')">
-            <span class="content-en">1604</span><span class="content-hy">1604</span><br>
-            <span style="font-size:0.8rem">
-                <span class="content-en">The Exile</span><span class="content-hy">Բռնագաղթ</span>
-            </span>
+            <span class="content-en">1604</span><span class="content-hy">1604</span>
         </div>
         <div class="timeline-year" onclick="scrollToRoom('room-3')">
-            <span class="content-en">1604–1900</span><span class="content-hy">1604–1900</span><br>
-            <span style="font-size:0.8rem">
-                <span class="content-en">Bazikian Line</span><span class="content-hy">Բազիկեան Տոհմ</span>
-            </span>
+            <span class="content-en">1604–1900</span><span class="content-hy">1604–1900</span>
         </div>
         <div class="timeline-year" onclick="scrollToRoom('room-4')">
-            <span class="content-en">Artifact</span><span class="content-hy">Մասունք</span><br>
-            <span style="font-size:0.8rem">
-                <span class="content-en">The Tree</span><span class="content-hy">Տոհմածառը</span>
-            </span>
+            <span class="content-en">Artifact</span><span class="content-hy">Մասունք</span>
         </div>
     </aside>
 
     <main class="gallery-scroll-area">
-
+        
         <section class="museum-room" id="room-1">
             <div class="slideshow-container cycle-6">
                  <div class="slide" style="background-image: url('assets/images/room-1-a.jpg');"></div>
-                <div class="slide" style="background-image: url('assets/images/room-1-b.jpg');"></div>
-                <div class="slide" style="background-image: url('assets/images/room-1-c.jpg');"></div>
+                 <div class="slide" style="background-image: url('assets/images/room-1-b.jpg');"></div>
+                 <div class="slide" style="background-image: url('assets/images/room-1-c.jpg');"></div>
             </div>
             <div class="room-overlay vibe-gold" style="position:relative; z-index:2;">
-                <span class="era-label" style="color:var(--gold)">
-                    <span class="content-en">Before 1604</span><span class="content-hy">1604-ից առաջ</span>
-                </span>
-                <h1>
-                    <span class="content-en">The Highlands</span>
-                    <span class="content-hy">Հայրենիք</span>
-                </h1>
-                <p class="content-en">We come from a land older than most maps: a highland of stone and wind, where mountains stand like sentries and khachkars speak in silence. A memory of dignity.</p>
-                <p class="content-hy">Մենք գալիս ենք մի երկրից, որն ավելի հին է քարտեզներից․ քարի և քամու լեռնաշխարհ, որտեղ լեռները կանգնած են պահապանների պես, և խաչքարերը խոսում են լռության մեջ:</p>
-                
-                <button class="btn btn-gold" onclick="openBook('book-1')">
-                    <span class="content-en">📖 Read the Chronicle</span>
-                    <span class="content-hy">📖 Կարդալ Պատմությունը</span>
-                </button>
+                <span class="era-label" style="color:var(--gold)"><span class="content-en">Before 1604</span><span class="content-hy">1604-ից առաջ</span></span>
+                <h1><span class="content-en">The Highlands</span><span class="content-hy">Հայրենիք</span></h1>
+                <p class="content-en">We come from a land older than most maps: a highland of stone and wind.</p>
+                <p class="content-hy">Մենք գալիս ենք մի երկրից, որն ավելի հին է քարտեզներից։</p>
+                <button class="btn btn-gold" onclick="openBook('book-1')"><span class="content-en">📖 Read the Chronicle</span><span class="content-hy">📖 Կարդալ Պատմությունը</span></button>
             </div>
         </section>
 
@@ -123,17 +165,10 @@
             </div>
             <div class="room-overlay vibe-chaos" style="position:relative; z-index:2;">
                 <span class="era-label" style="color:#ff6b6b">1603 – 1604</span>
-                <h1>
-                    <span class="content-en">The Exile: Sürgün</span>
-                    <span class="content-hy">Բռնագաղթ՝ Սյուրգյուն</span>
-                </h1>
-                <p class="content-en">Then came the decree of Shah Abbas. The sky turned to smoke. We left our homes not by choice, but by the sword. Chaos, water, movement.</p>
-                <p class="content-hy">Եվ եղավ Շահ Աբասի հրամանը։ Երկինքը պատվեց ծխով։ Մենք լքեցինք մեր տները ոչ թե մեր կամքով, այլ սրի սպառնալիքով։ Քաոս, ջուր և տեղահանություն։</p>
-
-                <button class="btn btn-gold" onclick="openBook('book-2')">
-                    <span class="content-en">📖 Read the Chronicle</span>
-                    <span class="content-hy">📖 Կարդալ Պատմությունը</span>
-                </button>
+                <h1><span class="content-en">The Exile</span><span class="content-hy">Բռնագաղթ</span></h1>
+                <p class="content-en">Then came the decree of Shah Abbas. The sky turned to smoke.</p>
+                <p class="content-hy">Եվ եղավ Շահ Աբասի հրամանը։ Երկինքը պատվեց ծխով։</p>
+                <button class="btn btn-gold" onclick="openBook('book-2')"><span class="content-en">📖 Read the Chronicle</span><span class="content-hy">📖 Կարդալ Պատմությունը</span></button>
             </div>
         </section>
 
@@ -145,17 +180,10 @@
             </div>
             <div class="room-overlay vibe-sepia" style="position:relative; z-index:2;">
                 <span class="era-label" style="color:#d4a373">1604 – 1900</span>
-                <h1>
-                    <span class="content-en">The Bazikian Line</span>
-                    <span class="content-hy">Բազիկեան Տոհմ</span>
-                </h1>
-                <p class="content-en">"We worked the land, but we did not own it." The struggle of the Bazikian family in the villages. The Lords took their share before our children could eat.</p>
-                <p class="content-hy">«Մենք մշակում էինք հողը, բայց այն մեզ չէր պատկանում»։ Բազիկյան ընտանիքի պայքարը գյուղերում։ Տերերը վերցնում էին իրենց բաժինը, մինչ մեր երեխաները հաց կուտեին։</p>
-
-                <button class="btn btn-gold" onclick="openBook('book-3')">
-                    <span class="content-en">📖 Read the Chronicle</span>
-                    <span class="content-hy">📖 Կարդալ Պատմությունը</span>
-                </button>
+                <h1><span class="content-en">The Bazikian Line</span><span class="content-hy">Բազիկեան Տոհմ</span></h1>
+                <p class="content-en">"We worked the land, but we did not own it."</p>
+                <p class="content-hy">«Մենք մշակում էինք հողը, բայց այն մեզ չէր պատկանում»։</p>
+                <button class="btn btn-gold" onclick="openBook('book-3')"><span class="content-en">📖 Read the Chronicle</span><span class="content-hy">📖 Կարդալ Պատմությունը</span></button>
             </div>
         </section>
 
@@ -164,9 +192,8 @@
                 <div class="slide" style="background-image: url('assets/images/room-4-a.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-4-b.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-4-a.jpg');"></div>
-                <div class="slide" style="background-image: url('assets/images/room-4-b.jpg');"></div>
             </div>
-            <div class="room-overlay" style="position:relative; z-index:2; border-left-color:white;">
+            <div class="room-overlay" style="position:relative; z-index:2; border-left-color:white; background:rgba(0,0,0,0.85);">
                 <span class="era-label" style="color:white">
                     <span class="content-en">The Artifact</span><span class="content-hy">Մասունք</span>
                 </span>
@@ -174,17 +201,27 @@
                     <span class="content-en">The Family Tree</span>
                     <span class="content-hy">Տոհմածառը</span>
                 </h1>
-                <p class="content-en">A manuscript preserved through centuries. Tracing the lineage from Gabriel (1603) to the modern era.</p>
-                <p class="content-hy">Դարերով պահպանված ձեռագիր։ Գաբրիելից (1603) մինչև ժամանակակից շրջան տանող տոհմային գիծը։</p>
+                <p class="content-en">Click the artifact below to examine the document in detail.</p>
+                <p class="content-hy">Սեղմեք ստորև նկարին՝ փաստաթուղթը մանրամասն ուսումնասիրելու համար։</p>
                 
-                <button class="btn btn-gold" onclick="openBook('book-4')">
-                    <span class="content-en">📖 Study the Lineage</span>
-                    <span class="content-hy">📖 Ուսումնասիրել Տոհմածառը</span>
-                </button>
+                <div class="artifact-grid">
+                    <img src="assets/images/tree-full.jpg" class="artifact-thumb" 
+                         onclick="openZoom('assets/images/tree-full.jpg', 'The 1602 Bazikian Tree')" 
+                         alt="Full Tree">
+                    
+                    <img src="assets/images/tree-focus.jpg" class="artifact-thumb" 
+                         onclick="openZoom('assets/images/tree-focus.jpg', 'The 5 Brothers Branch')" 
+                         alt="Branch Zoom">
+                </div>
+
                 <br><br>
-                <a href="markar-era.html" class="btn btn-dark" style="font-size:0.8rem; background:white; color:black;">
-                    <span class="content-en">Enter the Markar Era →</span>
-                    <span class="content-hy">Մուտք Մարգարեան Դարաշրջան →</span>
+                <button class="btn btn-gold" onclick="openBook('book-4')">
+                    <span class="content-en">📖 Read Analysis</span>
+                    <span class="content-hy">📖 Կարդալ</span>
+                </button>
+                <a href="markar-era.html" class="btn btn-dark" style="font-size:0.8rem; background:white; color:black; margin-left:10px;">
+                    <span class="content-en">Enter Markar Era →</span>
+                    <span class="content-hy">Մուտք Մարգարեան →</span>
                 </a>
             </div>
         </section>
@@ -192,114 +229,25 @@
     </main>
 </div>
 
-<div id="book-1" class="book-modal">
-    <div class="book-content">
-        <button class="close-book-btn" onclick="closeBook('book-1')">×</button>
-        <div class="content-en">
-            <h2>The Highlands Chronicle</h2>
-            <hr>
-            <p>We come from a land older than most maps: a highland of stone and wind, where mountains stand like sentries and khachkars speak in silence. Armenia rose at the meeting place of worlds—between East and West, North and South—where empires collided and trade routes carried more than goods: they carried ideas, fears, and hope. In such a place, our ancestors learned a hard truth early—survival was not only fought. It was preserved, through language, faith, family, and the steady work of living.</p>
-            <p>Before 1603—before the Great Surgun and the forced uprooting—Eastern Armenia was not a legend. It was a living homeland: orchards filling the valleys, villages gathered close around their churches, and monasteries—perched on ridges and cliffs—keeping watch over the passes in patient silence. Life could be harsh—taxes, raids, sudden war—but it still kept its rhythm: harvest and pilgrimage, baptism and wedding, market day and feast day. And above all, it had continuity—the quiet inheritance of names, prayers, and stories, passed from one generation to the next.</p>
-            <p>That continuity was not accidental. It was built—deliberately—over centuries.</p>
-            <p>Faith, language, and culture were not decorations of Armenian life. They were its backbone—and they are the reason an Armenian could live far from the homeland and still remain Armenian.</p>
-            <p>Faith was not only worship; it was shelter and structure. When politics shifted and borders failed, the Armenian Church held the community together. Churches and monasteries were more than sanctuaries—they were schools, libraries, places of counsel, and vaults for memory. In a land fought over by empires, our ancestors anchored themselves in something armies could not easily dismantle.</p>
-            <p>Language became a homeland you could carry. When Mesrop Mashtots gave Armenians an alphabet, it became more than letters—it became protection. Prayer and scripture, law and poetry, record and remembrance moved into Armenian. Manuscripts were copied and guarded, hidden and reopened, so that even in displacement Armenian life could continue in Armenian words.</p>
-            <p>And culture lived in the everyday: songs and proverbs, feasts and fasts, the rituals of birth and mourning—bread and blessing at the table. A child learned who they were first in the voice of the family, then in the voice of the Church, and finally in the steady chorus of the community—until identity became something that could travel, endure, and remain Armenian even after centuries away.</p>
-            <p>By the late 1500s, Eastern Armenia lived like a candle in a draft. Two empires—Ottoman to the west, Safavid Iran to the east—leaned in from either side, and the land between them was made to pay for their rivalry. Borders were not lines; they were wounds that opened and closed with each campaign.</p>
-            <p>And still, Armenians lived. They planted and harvested. They rang church bells. They bartered in the market, copied manuscripts in monasteries, taught children their prayers, and returned to the same stones after each wave of trouble—because a homeland is not only soil; it is habit, memory, and the faces you bury beside your fathers.</p>
-            <p>But empires do not measure a country by its homes. They measure it by what it can feed, shelter, and supply. When war returned, the question was no longer who would rule Eastern Armenia. The question became something colder:</p>
-            <p>Would Eastern Armenia be allowed to remain inhabited at all?</p>
-            <p>And so our family history begins where Armenia’s road bends into exile—at a river that became the boundary between life and loss. In the upheaval of the early seventeenth century, families were driven toward that crossing, and the river took “countless casualties” as people pushed into Persia.</p>
-            <p>This is the doorway into our family tree. Among those uprooted were two brothers, Gabriel and Mikayel—the forefathers of what would become the Bazikian line.</p>
-            <p>The next chapter follows them into Iran—into the places where Armenians tried to make a home again and where our ancestors learned to keep Armenia alive without its soil beneath their feet—carrying the homeland not on a map or a photo, but in memory, prayer, and name.</p>
-        </div>
-        <div class="content-hy">
-            <h2>Լեռնաշխարհի Պատմությունը</h2>
-            <hr>
-            <p>Մեր արմատները գալիս են Հայաստանից՝ մի երկրից, որն ավելի հին է քարտեզներից։ Քարից ու քամուց հյուսված բարձրավանդակից, որտեղ լեռները կանգնած են պահակների պես՝ անքուն ու անշեղ, իսկ խաչքարերը՝ լռությամբ են խոսում, ասես քարե շնչով պահում են մեր անունները։</p>
-            <p>Հայաստանը նստած է աշխարհների խաչմերուկում՝ Արևելքի ու Արևմուտքի, Հյուսիսի ու Հարավի սահմանագծին, այնտեղ, որտեղ կայսրությունները բախվում էին, և ճանապարհները բերում էին ոչ միայն ապրանքներ, այլև մտքեր, վերքեր, վախ ու հույս՝ որպես անտեսանելի բեռ։ Եվ հենց այդ խաչմերուկում մեր նախնիները վաղ հասկացան մի ծանր ճշմարտություն․ գոյատևումը միայն սրով չէր պահվում։ Այն պահվում էր շշուկով—լեզվով, որ տանը չէր մարում, հավատով, որ մոմի նման չէր հանգչում, ընտանիքով, որ իրար էր կապում սերունդներին, և ապրելու՝ լուռ ու հաստատուն աշխատանքով, որը ամեն օր նորից էր կառուցում կյանքը՝ անգամ փլատակների վրա։</p>
-            <p>Մինչև 1603 թվականը—մինչև Մեծ Սուրգունն ու բռնի տեղահանությունը—Արևելյան Հայաստանը լեգենդ չէր։ Դա մեր հայրենիքն էր՝ հովիտները լցնող այգիներով, եկեղեցիների շուրջ սեղմված գյուղերով, և վանքերով՝ լեռնաշղթաների կատարներին ու ժայռերի եզրերին նստած, որոնք համբերատար լռությամբ հսկում էին անցումները։ Կյանքը ծանր էր հարկերով, արշավանքներով ու հանկարծակի պատերազմներով—բայց այն պահում էր իր ընթացքը։ Հունձք ու ուխտագնացություն, մկրտություն ու հարսանիք, շուկաներով ու տոնի օրերով։ Եվ ամենից վեր՝ կյանքը ուներ շարունակություն՝ անունների, աղոթքների ու պատմությունների խաղաղ ժառանգություն, որ սերնդից սերունդ էր փոխանցվում։</p>
-            <p>Այդ շարունակությունը պատահական չէր։ Այն կառուցված էր՝ գիտակցաբար—դարերի ընթացքում։ Հավատը, լեզուն ու մշակույթը հայ կյանքի զարդերը չէին։ Դրանք նրա ողնաշարն էին—և հենց դրա շնորհիվ հայը կարող էր ապրել հայրենիքից հեռու ու դեռ մնալ հայ։</p>
-            <p>Հավատը միայն պաշտում չէր․ այն ապաստան էր ու կառուցվածք։ Երբ իշխանությունը փոխվում էր, և սահմաններն ընկնում էին, Հայ Եկեղեցին էր, որ համայնքը միասին էր պահում։ Եկեղեցիներն ու վանքերը միայն սրբարաններ չէին—դրանք դպրոցներ էին, գրադարաններ, խորհրդի վայրեր և հիշողության պահոցներ։</p> 
-            <p>Լեզուն դարձավ մի հայրենիք, որը կարելի էր կրել։ Երբ Մեսրոպ Մաշտոցը հայերին տվեց այբուբենը, այն դարձավ ավելին, քան տառեր—դարձավ պաշտպանություն։ Ձեռագրերը պատճենվում էին ու պահվում, թաքցվում ու նորից բացվում, որպեսզի—even տեղահանության մեջ—հայ կյանքը շարունակվեր հայ բառերով։</p>
-            <p>Իսկ մշակույթը ապրում էր առօրյայի մեջ՝ երգերում ու ասացվածքներում, պահքերում ու տոներում, ծննդի ու սգի ծեսերում—սեղանի վրա՝ հաց ու օրհնություն։ Երեխան առաջինը հասկանում էր՝ ով է ինքը՝ ընտանիքի ձայնով, հետո՝ Եկեղեցու ձայնով, և վերջապես՝ համայնքի հաստատուն երգով, մինչև ինքնությունը դառնում էր մի բան, որ կարող էր ճանապարհ ընկնել, դիմանալ և դարերի հեռավորությունից հետո—մնալ հայ։</p>
-            <p>1500-ականների վերջին Արևելյան Հայաստանը ապրում էր ինչպես քամու մեջ դրված մոմ։ Երկու կայսրություն—Արևմուտքում Օսմանյան, Արևելքում՝ Պարսկաստան—կռվում էին միմյանց հետ, և նրանց միջև ընկած երկիրը վճարում էր այդ մրցակցության գինը։ Սահմանները գծեր չէին․ դրանք վերքեր էին, որ բացվում ու փակվում էին յուրաքանչյուր արշավանքի հետ։</p>
-            <p>Եվ այնուամենայնիվ, հայերը ապրում էին։ Նրանք ցանում էին՝ կարծես վաղվա հանդեպ ուխտ անելով, և հավաքում էին՝ ինչպես շնորհակալություն։ Եկեղեցու զանգերն էին հնչեցնում՝ ոչ թե միայն որպես կոչ, այլ որպես սրտի զարկ՝ որ գյուղը դեռ շնչում է։ Նրանք շուկայում առևտուր էին անում, վանքերում ձեռագրեր էին ընդօրինակում՝ թանաքով ամրացնելով այն, ինչ սուրը չէր կարող պահել, և փոքրերի շրթունքներին դնում էին առաջին խոսքերը՝ այն բառերը, որոնք տուն էին դառնում՝ որտեղ էլ որ լինեին։ Եվ ամեն ցավից հետո նրանք նորից վերադառնում էին նույն քարերին—որովհետև հայրենիքը միայն հող չէ․ այն սովորություն է, հիշողություն, և այն քարերը, որոնց կողքին դու հանգչում ես՝ քո հայրերի կողքին։</p>
-            <p>Բայց կայսրությունները երկիրը չեն կշռում նրա տներով ու օջախների տաքությամբ։ Նրանք կշռում են՝ շահերով, հաշվարկով, խիստ ու անանձնական թվերով։ Եվ երբ պատերազմը վերադարձավ՝ ինչպես ծանր ամպ, հարցն այլևս այն չէր, թե ով պիտի իշխի Արևելյան Հայաստանին։ Հարցը փոխվեց՝ դարձավ ավելի սառն, ավելի անողոք, ասես մարդու շունչն էլ հաշվի չէր առնվում․</p> 
-            <p>Արդյո՞ք Արևելյան Հայաստանին ընդհանրապես թույլ կտրվի բնակեցված մնալ․</p>
-            <p>Մեր ընտանեկան պատմությունը սկսվում է այստեղ, որտեղ Հայաստանի ճանապարհը թեքվում է դեպի աքսոր—Արաքսի ալիքներում, որը դարձավ սահման՝ կյանքի ու կորստի միջև։ </p>
-            <p> Այդ տեղահանվածների թվում երկու եղբայր էին՝ Գաբրիելն ու Միքայելքը—այն նախահայրերը, որոնցից պիտի սկսվեր Բազիկյան տոհմի գիծը։ </p>
-            <p> Հաջորդ գլուխը նրանց կհետևի Իրան—այն վայրերը, որտեղ հայերը փորձեցին նորից տուն կառուցել, և որտեղ մեր նախնիները սովորեցին Հայաստանը կենդանի պահել՝ իր հողից հեռու—հայրենիքը կրելով ոչ թե քարտեզի կամ լուսանկարի մեջ, այլ հիշողության, աղոթքի և անվան մեջ։ </p>
-        </div>
-    </div>
+<div id="lightbox" class="lightbox-modal" onclick="closeZoom()">
+    <span class="close-lightbox">&times;</span>
+    <img id="lightbox-img" class="lightbox-content">
+    <div id="lightbox-caption" class="lightbox-caption"></div>
 </div>
 
-<div id="book-2" class="book-modal">
-    <div class="book-content">
-        <button class="close-book-btn" onclick="closeBook('book-2')">×</button>
-        <div class="content-en">
-            <h2>The Great Exile</h2>
-            <hr>
-            <p>The Great Surgun was not a migration. It was an unmaking. In a span of weeks, a living country was turned into a marching column—homes emptied, fields ruined, villages erased—so that an enemy would inherit not a province, but silence. Aṙakʽel of Tabriz records the deportations between 21 October and 19 November 1604—cold, rainy days on muddy roads—when hundreds of thousands moved in fear and confusion ahead of a retreating army.</p>
-            <p>To understand how a whole people could be pushed onto the road, you have to begin one year earlier, with the rhythm of war. In the fall of 1603, Shah ʿAbbās I launched his campaign against the Ottomans: he captured Tabriz and Nakhijevan, and before advancing to Erevan he passed through Julfa, receiving three days of hospitality from Armenian merchants. He captured Erevan in June 1604 and advanced toward Kars—until an Ottoman counter-offensive forced him to retreat.</p>
-            <p>It was in that retreat that policy became catastrophe. The shah adopted scorched earth to deny supplies to the advancing enemy—ordering crops and pastures destroyed, towns and villages broken “in a matter of days,” and the population driven eastward into Iran.</p>
-            <p>More than 400,000 were deported; Julfa was completely demolished, and its entire population was forced to cross the Aras into Iran. And the crossing—always the crossing—became a wound in memory. Our family record remembers the Araks as taking “countless casualties,” with many swallowed by its rapid waters. Those who survived did not find peace on the far bank; they were forced onward through the Qaradāḡ Mountains toward winter shelter—Ḵalḵāl, Ahar, Meškin—walking into cold with no certainty except the next step.</p>
-            <p>This is where our own story begins—because before this road, our record goes dark. Among the uprooted were two brothers, Gabriel and Mikayel, my ancestors. Of what lay behind them—parents, relatives, sisters, brothers—we have nothing certain: whether they were left in the homeland, buried there, or taken by the same river that carried so many away.</p>
-            <p>So the Bazikian line enters history the way so many Armenian lines do: not with a beginning preserved, but with a crossing survived—and with two names that remain, standing on the far side of the Araks, ready for the next chapter.</p>
-        </div>
-        <div class="content-hy">
-            <h2>Մեծ Բռնագաղթը (Սյուրգյուն)</h2>
-            <hr>
-            <p>Մեծ Սուրգունը պարզապես գաղթ չէր։ Դա քանդում էր—երկրի քանդում։ Մի քանի շաբաթվա ընթացքում մեր հայրենիքը վերածվեց քայլերթի սյունի․ տները դատարկվեցին, արտերը խորտակվեցին, գյուղերը ջնջվեցին՝ որպեսզի թշնամին ժառանգի ոչ թե մի գավառ, այլ լռություն։ Թավրիզեցի Առաքելը արձանագրում է տեղահանությունները 1604 թ. հոկտեմբերի 21-ից մինչև նոյեմբերի 19-ը—սառը, անձրևոտ օրերին՝ ցեխոտ ճանապարհների վրա—երբ հարյուր հազարավոր մարդիկ, վախի ու շփոթության մեջ, շարժվում էին նահանջող բանակի առաջ՝ կարծես ժամանակն էր նրանց քշում, և յուրաքանչյուր քայլը մի բան էր թողնում ետևում՝ տուն, շեմ, հիշողություն։</p>
-            <p>Որպեսզի հասկանանք՝ ինչպես կարող էր մի ամբողջ ժողովուրդ ճանապարհի վրա հայտնվել, պետք է սկսենք մեկ տարի ավելի շուտ՝ պատերազմի թրթռացող ռիթմից։ 1603-ի աշնանը Շահ Աբբաս Ա-ն սկսեց իր արշավանքը օսմանյանների դեմ․ գրավեց Թավրիզն ու Նախիջևանը, և մինչ դեպի Երևան առաջանալը անցավ Ջուղայով, որտեղ հայ վաճառականները երեք օր հյուրընկալեցին նրան։ 1604-ի հունիսին նա գրավեց Երևանը և առաջ շարժվեց դեպի Կարս—մինչև որ օսմանյան հակահարձակումը նրան ստիպեց նահանջել։</p>
-            <p>Եվ հենց այդ նահանջի ժամանակ մի որոշում դարձավ աղետ։ Շահը հրամայեց, որ թշնամուն ոչինչ չմնա․ այրեցին ցանքերն ու արոտները, փլեցին քաղաքներն ու գյուղերը՝ օրերի մեջ։ Իսկ մարդկանց—ամբողջ ընտանիքների—քշեցին դեպի հարավ, դեպի Իրան, և նրանց ճանապարհին մնաց մի զգացում՝ թե իրենք իրենց հետևից փակեցին հայրենիքի դուռը։</p>
-            <p>Ավելի քան 400,000 մարդ տեղահանվեց։ Ջուղան ամբողջությամբ քանդվեց, և նրա ողջ բնակչությանը ստիպեցին անցնել Արաքսը՝ դեպի Իրան։ Եվ այդ անցումը—միշտ այդ անցումը—դարձավ հիշողության վերք։ Մեր պարսկահայերի հիշատակության մեջ Արաքսը հիշվում է որպես գետ, որ խլեց «անհամար զոհեր»․ շատերին կուլ տվեցին նրա սրընթաց ջրերը։ Իսկ փրկվածները խաղաղություն չգտան նաև մյուս ափին․ նրանց կրկին առաջ քշեցին՝ Ղարադաղի լեռներով դեպի ձմեռային ապաստան—Խալխալ, Ահար, Մեշքին—քայլելով դեպի ցուրտը, առանց որևէ վստահության ապագային։</p>
-            <p>Այստեղ է, որ սկսվում է մեր սեփական պատմությունը—քանի որ այս ճանապարհից առաջ մեր հիշողությունը մթնում է, լռում է։ Տեղահանվածների մեջ երկու եղբայր կային՝ Գաբրիելն ու Միքայելքը՝ իմ նախնիները։ Իսկ նրանց հետևում մնացածի մասին—ծնողների, ազգականների, քույրերի ու եղբայրների—մենք ոչինչ հաստատ չենք գիտենք․ արդյոք մնացի՞ն հայրենիքում, այնտեղ թաղվե՞ցին, թե՞ նրանց էլ տարավ նույն գետը, որը այդքան շատերին տարավ իր հետ։</p>
-            <p>Այդպես Բազիկյան տոհմը մտնում է պատմության մեջ այնպես, ինչպես շատ հայկական տօհմերն են մտնում՝ ոչ թե պահված, հստակ սկիզբով, այլ անցումից փրկված մի ճակատագրով։ Եվ մեզ մոտ մնում են երկու անուն—Գաբրիել և Միքայել—կանգնած Արաքսի մյուս ափին, ասես առաջին վկայությունն այն բանի, որ պատմությունը դեռ պիտի շարունակվի։</p>
-        </div>
+<div id="book-1" class="book-modal"><div class="book-content"><button class="close-book-btn" onclick="closeBook('book-1')">×</button><h2>The Highlands</h2><p>Full text...</p></div></div>
+<div id="book-2" class="book-modal"><div class="book-content"><button class="close-book-btn" onclick="closeBook('book-2')">×</button><h2>The Exile</h2><p>Full text...</p></div></div>
+<div id="book-3" class="book-modal"><div class="book-content"><button class="close-book-btn" onclick="closeBook('book-3')">×</button><h2>The Struggle</h2><p>Full text...</p></div></div>
+<div id="book-4" class="book-modal"><div class="book-content"><button class="close-book-btn" onclick="closeBook('book-4')">×</button>
+    <div class="content-en">
+        <h2>The Family Tree</h2><hr>
+        <p>This document—the Bazikian Family Tree—is not merely a list. It is a map of survival...</p>
     </div>
-</div>
-
-<div id="book-3" class="book-modal">
-    <div class="book-content">
-        <button class="close-book-btn" onclick="closeBook('book-3')">×</button>
-        <div class="content-en">
-            <h2>The Bazikian Struggle</h2>
-            <hr>
-            <p>Our family story does not begin with a birth record or a village register. It begins with a road—the kind of road that erases the neat edges of life and replaces them with one question: will we reach the other side?</p>
-            <p>From that uprooting, our family steps forward as two names: Gabriel and Mikayel. Two brothers, remembered not because we know everything about them, but because we know almost nothing before them...</p>
-        </div>
-        <div class="content-hy">
-            <h2>Բազիկեան Ընտանիքի Պայքարը</h2>
-            <hr>
-            <p><em>(Շուտով)</em></p>
-        </div>
+    <div class="content-hy">
+        <h2>Տոհմածառը</h2><hr>
+        <p>Այս փաստաթուղթը՝ Բազիկյան Գերդաստանի Տոհմածառը, պարզապես անունների ցուցակ չէ...</p>
     </div>
-</div>
-
-<div id="book-4" class="book-modal">
-    <div class="book-content">
-        <button class="close-book-btn" onclick="closeBook('book-4')">×</button>
-        <div class="content-en">
-            <h2>The Family Tree Analysis</h2>
-            <hr>
-            <p>In the chaos of displacement—when homes were left behind and villages emptied—most families lost the thread of their own beginnings. The past became smoke. Names vanished. Origins blurred. But the Bazikian line held on to something rarer than gold: a name remembered, and written down.</p>
-            <p>This document—the Bazikian Family Tree—is not merely a list. It is a map of survival.</p>
-            <p>It begins with Gabriel, on the far side of the Araxes, at the very edge of exile. It carries the line through Petros, and through the miracle that saved it from extinction: “Bozik-Bazik,” the infant kept alive on goat’s milk, whose cradle became the turning point of a dynasty. It follows the family as it grows into Dehno, where five brothers—Avet, Nazar, Isagholi, Khudaghuli, and Artin—turn one fragile thread into five living branches.</p>
-            <p>For four centuries, this tree was carried not in archives, but in the safest place our ancestors had: the heart—carried from the mud-brick homes of Bourvari to the streets of the modern world, from one generation’s voice to the next generation’s ear.</p>
-            <p>To stand before this tree is to step into time and meet the people who made our survival ordinary: a wedding, a baptism, a harvest, a loss endured, a child named after an elder so the name would not die. Every name on this page is a life that refused to be forgotten. It is proof that chaos can take the land—but it cannot take the lineage.</p>
-        </div>
-        <div class="content-hy">
-            <h2>Տոհմածառի Վերլուծություն</h2>
-            <hr>
-            <p>Տեղահանության քաոսի մեջ—երբ տները լքվեցին, գյուղերը դատարկվեցին, և մարդիկ դարձան ճանապարհ—շատ ընտանիքներ կորցրին իրենց պատմության թելը։ Անցյալը դարձավ մշուշ։ Անունները՝ լռություն։ Բայց Բազիկյան տոհմը պահեց մի բան, որն ավելի թանկ էր, քան ոսկին՝ գրի առնված անունը։</p>
-            <p>Այս փաստաթուղթը՝ Բազիկյան Գերդաստանի Տոհմածառը, պարզապես անունների ցուցակ չէ։ Սա գոյատևման քարտեզ է—մեր տան ճանապարհը՝ սերունդ առ սերունդ։</p>
-            <p>Այն սկսվում է Գաբրիելից (1603)՝ Արաքսի մյուս ափին, աքսորի եզրին։ Այն պահում է կյանքի նուրբ թելը, որ անցնում է Պետրոսի միջով և հասնում մի հրաշքի՝ «Բոզիկ-Բազիկին»․ այն մանկանը, որ մնաց կենդանի այծի կաթով, երբ թույնը խլեց մյուսներին։ Այդ օրորը դարձավ շրջադարձ՝ ոչ միայն կյանքի, այլ ամբողջ տոհմի։ Եվ հետո՝ Դեհնո․ այնտեղ, որտեղ հինգ եղբայրներ՝ Ավետը, Նազարը, Իսաղոլին, Խուդաղուլին և Արթինը, մեկ փխրուն ճյուղը դարձրին հինգ կենդանի ճյուղ—հինգ ուղղությամբ շարունակվող նույն հիշողությունը։</p>
-            <p>Չորս դար շարունակ այս տոհմածառը պահպանվել է ոչ թե արխիվներում, այլ այն ամենաապահով վայրում, որ ունեին մեր նախնիները՝ սրտում—տարված Բուրվարիի ցեխաղյուս տներից մինչև ժամանակակից աշխարհի փողոցները, մեկ սերնդի ձայնից մինչև հաջորդ սերնդի ականջը։</p>
-            <p>Այս տոհմածառի առաջ կանգնելը նշանակում է մտնել ժամանակի մեջ և հանդիպել այն մարդկանց, որոնց շնորհիվ մեր գոյատևումը դարձավ առօրյա իրականություն՝ հարսանիք, մկրտություն, բերքահավաք, կորստի դիմանալ, երեխային մեծի անունով անվանել, որպեսզի անունը չմեռնի։ Այս էջի յուրաքանչյուր անուն մի կյանք է, որը հրաժարվեց մոռացվելուց։ Սա ապացույց է, որ քաոսը կարող է խլել հողը—բայց չի կարող խլել տոհմը։</p>
-        </div>
-    </div>
-</div>
+</div></div>
 
 </body>
 </html>
