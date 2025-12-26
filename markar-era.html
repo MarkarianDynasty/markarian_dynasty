@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Markar Era | The 8 Pillars</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Noto+Serif+Armenian:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script>
+        // Tribute Modal Logic
+        function openTribute(name, text) {
+            const modal = document.getElementById('tribute-modal');
+            document.getElementById('tribute-name').innerText = name;
+            document.getElementById('tribute-text').innerText = text;
+            modal.style.display = 'flex';
+        }
+        function closeTribute() {
+            document.getElementById('tribute-modal').style.display = 'none';
+        }
+    </script>
+</head>
+<body style="background-color: var(--bg-parchment);">
+
+    <nav>
+        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">MARKARIAN <span style="color:var(--pomegranate)">DYNASTY</span></a></div>
+        <div class="nav-links">
+            <a href="index.html" style="text-decoration:none; color:inherit;">← MUSEUM LOBBY</a>
+        </div>
+    </nav>
+
+    <header class="founders-hero">
+        <div class="hero-gradient">
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 10px; color: var(--gold);">The Founders</h1>
+            <h2 class="armenian-text" style="color:white; font-size: 2rem;">Մարգար եւ Մարգարիտ</h2>
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto; opacity: 0.9;">
+                The Bridge between the Old World and the New. From the villages of Markazi to the establishment of a Dynasty in Tehran.
+            </p>
+        </div>
+    </header>
+
+    <main class="rotunda-grid">
+
+        <div class="pillar-card card-memorial" onclick="openTribute('Mayrik (The Firstborn)', 'Born approx 1922. The eldest daughter who remains in our memory as the first bloom of the Markarian tree.')">
+            <div class="memorial-content">
+                <div class="memorial-icon">🕊️</div>
+                <h2 style="font-family: 'Playfair Display', serif;">Mayrik</h2>
+                <h3 class="armenian-text" style="font-size:1.2rem; color:#888;">Մայրիկ</h3>
+                <p style="font-size:0.9rem; margin-top:10px;">Circa 1922</p>
+                <small style="text-transform:uppercase; letter-spacing:1px; margin-top:20px;">In Memoriam</small>
+            </div>
+        </div>
+
+        <div class="pillar-card card-living">
+            <div class="img-placeholder">Image Coming Soon</div>
+            <div class="card-info">
+                <h3>Shirin</h3>
+                <h4 class="armenian-text">Շիրին</h4>
+                <p>The Second Child</p>
+            </div>
+        </div>
+
+        <div class="pillar-card card-living">
+            <div class="img-placeholder">Image Coming Soon</div>
+            <div class="card-info">
+                <h3>Ghalamkar</h3>
+                <h4 class="armenian-text">Ղալամքար</h4>
+                <p>The Third Child</p>
+            </div>
+        </div>
+
+        <div class="pillar-card card-living">
+            <div class="img-placeholder">Image Coming Soon</div>
+            <div class="card-info">
+                <h3>Hrand</h3>
+                <h4 class="armenian-text">Հրանդ</h4>
+                <p>The Fourth Child</p>
+            </div>
+        </div>
+
+        <div class="pillar-card card-living">
+            <div class="img-placeholder">Image Coming Soon</div>
+            <div class="card-info">
+                <h3>Frand</h3>
+                <h4 class="armenian-text">Ֆրանդ</h4>
+                <p>The Fifth Child</p>
+            </div>
+        </div>
+
+        <div class="pillar-card card-living">
+            <div class="img-placeholder">Image Coming Soon</div>
+            <div class="card-info">
+                <h3>Khoodan</h3>
+                <h4 class="armenian-text">Խուդան</h4>
+                <p>The Sixth Child</p>
+            </div>
+        </div>
+
+        <div class="pillar-card card-living">
+            <div class="img-placeholder">Image Coming Soon</div>
+            <div class="card-info">
+                <h3>Moushegh</h3>
+                <h4 class="armenian-text">Մուշեղ</h4>
+                <p>The Seventh Child</p>
+            </div>
+        </div>
+
+        <div class="pillar-card card-memorial" onclick="openTribute('Vanik (The Youngest)', 'Born approx 1938. The youngest son, whose memory is preserved as the final pillar of the first generation.')">
+            <div class="memorial-content">
+                <div class="memorial-icon">🕯️</div>
+                <h2 style="font-family: 'Playfair Display', serif;">Vanik</h2>
+                <h3 class="armenian-text" style="font-size:1.2rem; color:#888;">Վանիկ</h3>
+                <p style="font-size:0.9rem; margin-top:10px;">Circa 1938</p>
+                <small style="text-transform:uppercase; letter-spacing:1px; margin-top:20px;">In Memoriam</small>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="tribute-modal" class="tribute-modal" onclick="closeTribute()">
+        <div class="tribute-content">
+            <h2 id="tribute-name" style="color:var(--charcoal); font-family: 'Playfair Display', serif;"></h2>
+            <hr style="width:50px; border:2px solid #ccc; margin: 20px auto;">
+            <p id="tribute-text" style="line-height: 1.6; color:#555;"></p>
+            <br>
+            <button class="btn btn-dark" style="background:transparent; color:#333; border:1px solid #ccc;">Close Tribute</button>
+        </div>
+    </div>
+
+</body>
+</html>
