@@ -10,12 +10,9 @@
     <script>
         // LANGUAGE SWITCHER FUNCTION
         function setLanguage(lang) {
-            // Remove both classes first to be safe
             document.body.classList.remove('lang-en', 'lang-hy');
-            // Add the selected language class
             document.body.classList.add('lang-' + lang);
             
-            // Update the button visuals
             document.getElementById('btn-en').classList.remove('active');
             document.getElementById('btn-hy').classList.remove('active');
             document.getElementById('btn-' + lang).classList.add('active');
@@ -23,7 +20,6 @@
 
         // Standard Scroll Spy & Navigation
         document.addEventListener('DOMContentLoaded', () => {
-            // Default to English on load
             if (!document.body.classList.contains('lang-hy')) {
                 setLanguage('en'); 
             }
@@ -100,9 +96,6 @@
                  <div class="slide" style="background-image: url('assets/images/room-1-a.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-1-b.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-1-c.jpg');"></div>
-                <div class="slide" style="background-image: url('assets/images/room-1-d.jpg');"></div>
-                <div class="slide" style="background-image: url('assets/images/room-1-e.jpg');"></div>
-                <div class="slide" style="background-image: url('assets/images/room-1-f.jpg');"></div>
             </div>
             <div class="room-overlay vibe-gold" style="position:relative; z-index:2;">
                 <span class="era-label" style="color:var(--gold)">
@@ -127,7 +120,6 @@
                 <div class="slide" style="background-image: url('assets/images/room-2-a.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-2-b.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-2-c.jpg');"></div>
-                <div class="slide" style="background-image: url('assets/images/room-2-d.jpg');"></div>
             </div>
             <div class="room-overlay vibe-chaos" style="position:relative; z-index:2;">
                 <span class="era-label" style="color:#ff6b6b">1603 – 1604</span>
@@ -150,9 +142,6 @@
                 <div class="slide" style="background-image: url('assets/images/room-3-a.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-3-b.jpg');"></div>
                 <div class="slide" style="background-image: url('assets/images/room-3-c.jpg');"></div>
-                <div class="slide" style="background-image: url('assets/images/room-3-d.jpg');"></div>
-                <div class="slide" style="background-image: url('assets/images/room-3-e.jpg');"></div>
-                <div class="slide" style="background-image: url('assets/images/room-3-f.jpg');"></div>
             </div>
             <div class="room-overlay vibe-sepia" style="position:relative; z-index:2;">
                 <span class="era-label" style="color:#d4a373">1604 – 1900</span>
@@ -206,7 +195,6 @@
 <div id="book-1" class="book-modal">
     <div class="book-content">
         <button class="close-book-btn" onclick="closeBook('book-1')">×</button>
-        
         <div class="content-en">
             <h2>The Highlands Chronicle</h2>
             <hr>
@@ -225,7 +213,6 @@
             <p>This is the doorway into our family tree. Among those uprooted were two brothers, Gabriel and Mikayel—the forefathers of what would become the Bazikian line.</p>
             <p>The next chapter follows them into Iran—into the places where Armenians tried to make a home again and where our ancestors learned to keep Armenia alive without its soil beneath their feet—carrying the homeland not on a map or a photo, but in memory, prayer, and name.</p>
         </div>
-
         <div class="content-hy">
             <h2>Լեռնաշխարհի Պատմությունը</h2>
             <hr>
@@ -250,7 +237,6 @@
 <div id="book-2" class="book-modal">
     <div class="book-content">
         <button class="close-book-btn" onclick="closeBook('book-2')">×</button>
-        
         <div class="content-en">
             <h2>The Great Exile</h2>
             <hr>
@@ -261,7 +247,6 @@
             <p>This is where our own story begins—because before this road, our record goes dark. Among the uprooted were two brothers, Gabriel and Mikayel, my ancestors. Of what lay behind them—parents, relatives, sisters, brothers—we have nothing certain: whether they were left in the homeland, buried there, or taken by the same river that carried so many away.</p>
             <p>So the Bazikian line enters history the way so many Armenian lines do: not with a beginning preserved, but with a crossing survived—and with two names that remain, standing on the far side of the Araks, ready for the next chapter.</p>
         </div>
-
         <div class="content-hy">
             <h2>Մեծ Բռնագաղթը (Սյուրգյուն)</h2>
             <hr>
@@ -278,18 +263,16 @@
 <div id="book-3" class="book-modal">
     <div class="book-content">
         <button class="close-book-btn" onclick="closeBook('book-3')">×</button>
-        
         <div class="content-en">
             <h2>The Bazikian Struggle</h2>
             <hr>
             <p>Our family story does not begin with a birth record or a village register. It begins with a road—the kind of road that erases the neat edges of life and replaces them with one question: will we reach the other side?</p>
             <p>From that uprooting, our family steps forward as two names: Gabriel and Mikayel. Two brothers, remembered not because we know everything about them, but because we know almost nothing before them...</p>
         </div>
-
         <div class="content-hy">
             <h2>Բազիկեան Ընտանիքի Պայքարը</h2>
             <hr>
-            <p><em>(Please paste the Armenian translation for the Bazikian story here...)</em></p>
+            <p><em>(Շուտով)</em></p>
         </div>
     </div>
 </div>
@@ -297,27 +280,23 @@
 <div id="book-4" class="book-modal">
     <div class="book-content">
         <button class="close-book-btn" onclick="closeBook('book-4')">×</button>
-        
         <div class="content-en">
             <h2>The Family Tree Analysis</h2>
             <hr>
-            <p>In the chaos of displacement—when homes were left behind and villages emptied—most families lost the thread of their own beginnings. The past became smoke. Names vanished. Origins blurred. But the Bazikian line held on to something rarer than gold: a name remembered, and written down. </p>
-<p>This document—the Bazikian Family Tree—is not merely a list. It is a map of survival. </p>
-<p>It begins with Gabriel, on the far side of the Araxes, at the very edge of exile. It carries the line through Petros, and through the miracle that saved it from extinction: “Bozik-Bazik,” the infant kept alive on goat’s milk, whose cradle became the turning point of a dynasty. It follows the family as it grows into Dehno, where five brothers—Avet, Nazar, Isagholi, Khudaghuli, and Artin—turn one fragile thread into five living branches. </p>
-<p>For four centuries, this tree was carried not in archives, but in the safest place our ancestors had: the heart—carried from the mud-brick homes of Bourvari to the streets of the modern world, from one generation’s voice to the next generation’s ear. </p>
-<p>To stand before this tree is to step into time and meet the people who made our survival ordinary: a wedding, a baptism, a harvest, a loss endured, a child named after an elder so the name would not die. Every name on this page is a life that refused to be forgotten. It is proof that chaos can take the land—but it cannot take the lineage. </p>
-
+            <p>In the chaos of displacement—when homes were left behind and villages emptied—most families lost the thread of their own beginnings. The past became smoke. Names vanished. Origins blurred. But the Bazikian line held on to something rarer than gold: a name remembered, and written down.</p>
+            <p>This document—the Bazikian Family Tree—is not merely a list. It is a map of survival.</p>
+            <p>It begins with Gabriel, on the far side of the Araxes, at the very edge of exile. It carries the line through Petros, and through the miracle that saved it from extinction: “Bozik-Bazik,” the infant kept alive on goat’s milk, whose cradle became the turning point of a dynasty. It follows the family as it grows into Dehno, where five brothers—Avet, Nazar, Isagholi, Khudaghuli, and Artin—turn one fragile thread into five living branches.</p>
+            <p>For four centuries, this tree was carried not in archives, but in the safest place our ancestors had: the heart—carried from the mud-brick homes of Bourvari to the streets of the modern world, from one generation’s voice to the next generation’s ear.</p>
+            <p>To stand before this tree is to step into time and meet the people who made our survival ordinary: a wedding, a baptism, a harvest, a loss endured, a child named after an elder so the name would not die. Every name on this page is a life that refused to be forgotten. It is proof that chaos can take the land—but it cannot take the lineage.</p>
         </div>
-
         <div class="content-hy">
             <h2>Տոհմածառի Վերլուծություն</h2>
             <hr>
-            <p><em>Տեղահանության քաոսի մեջ—երբ տները լքվեցին, գյուղերը դատարկվեցին, և մարդիկ դարձան ճանապարհ—շատ ընտանիքներ կորցրին իրենց պատմության թելը։ Անցյալը դարձավ մշուշ։ Անունները՝ լռություն։ Բայց Բազիկյան տոհմը պահեց մի բան, որն ավելի թանկ էր, քան ոսկին՝ գրի առնված անունը։ </p>
-<p>Այս փաստաթուղթը՝ Բազիկյան Գերդաստանի Տոհմածառը, պարզապես անունների ցուցակ չէ։ Սա գոյատևման քարտեզ է—մեր տան ճանապարհը՝ սերունդ առ սերունդ։ </p>
-<p>Այն սկսվում է Գաբրիելից (1603)՝ Արաքսի մյուս ափին, աքսորի եզրին։ Այն պահում է կյանքի նուրբ թելը, որ անցնում է Պետրոսի միջով և հասնում մի հրաշքի՝ «Բոզիկ-Բազիկին»․ այն մանկանը, որ մնաց կենդանի այծի կաթով, երբ թույնը խլեց մյուսներին։ Այդ օրորը դարձավ շրջադարձ՝ ոչ միայն կյանքի, այլ ամբողջ տոհմի։ Եվ հետո՝ Դեհնո․ այնտեղ, որտեղ հինգ եղբայրներ՝ Ավետը, Նազարը, Իսաղոլին, Խուդաղուլին և Արթինը, մեկ փխրուն ճյուղը դարձրին հինգ կենդանի ճյուղ—հինգ ուղղությամբ շարունակվող նույն հիշողությունը։ </p>
-<p>Չորս դար շարունակ այս տոհմածառը պահպանվել է ոչ թե արխիվներում, այլ այն ամենաապահով վայրում, որ ունեին մեր նախնիները՝ սրտում—տարված Բուրվարիի ցեխաղյուս տներից մինչև ժամանակակից աշխարհի փողոցները, մեկ սերնդի ձայնից մինչև հաջորդ սերնդի ականջը։ </p>
-<p>Այս տոհմածառի առաջ կանգնելը նշանակում է մտնել ժամանակի մեջ և հանդիպել այն մարդկանց, որոնց շնորհիվ մեր գոյատևումը դարձավ առօրյա իրականություն՝ հարսանիք, մկրտություն, բերքահավաք, կորստի դիմանալ, երեխային մեծի անունով անվանել, որպեսզի անունը չմեռնի։ Այս էջի յուրաքանչյուր անուն մի կյանք է, որը հրաժարվեց մոռացվելուց։ Սա ապացույց է, որ քաոսը կարող է խլել հողը—բայց չի կարող խլել տոհմը։ 
-</em></p>
+            <p>Տեղահանության քաոսի մեջ—երբ տները լքվեցին, գյուղերը դատարկվեցին, և մարդիկ դարձան ճանապարհ—շատ ընտանիքներ կորցրին իրենց պատմության թելը։ Անցյալը դարձավ մշուշ։ Անունները՝ լռություն։ Բայց Բազիկյան տոհմը պահեց մի բան, որն ավելի թանկ էր, քան ոսկին՝ գրի առնված անունը։</p>
+            <p>Այս փաստաթուղթը՝ Բազիկյան Գերդաստանի Տոհմածառը, պարզապես անունների ցուցակ չէ։ Սա գոյատևման քարտեզ է—մեր տան ճանապարհը՝ սերունդ առ սերունդ։</p>
+            <p>Այն սկսվում է Գաբրիելից (1603)՝ Արաքսի մյուս ափին, աքսորի եզրին։ Այն պահում է կյանքի նուրբ թելը, որ անցնում է Պետրոսի միջով և հասնում մի հրաշքի՝ «Բոզիկ-Բազիկին»․ այն մանկանը, որ մնաց կենդանի այծի կաթով, երբ թույնը խլեց մյուսներին։ Այդ օրորը դարձավ շրջադարձ՝ ոչ միայն կյանքի, այլ ամբողջ տոհմի։ Եվ հետո՝ Դեհնո․ այնտեղ, որտեղ հինգ եղբայրներ՝ Ավետը, Նազարը, Իսաղոլին, Խուդաղուլին և Արթինը, մեկ փխրուն ճյուղը դարձրին հինգ կենդանի ճյուղ—հինգ ուղղությամբ շարունակվող նույն հիշողությունը։</p>
+            <p>Չորս դար շարունակ այս տոհմածառը պահպանվել է ոչ թե արխիվներում, այլ այն ամենաապահով վայրում, որ ունեին մեր նախնիները՝ սրտում—տարված Բուրվարիի ցեխաղյուս տներից մինչև ժամանակակից աշխարհի փողոցները, մեկ սերնդի ձայնից մինչև հաջորդ սերնդի ականջը։</p>
+            <p>Այս տոհմածառի առաջ կանգնելը նշանակում է մտնել ժամանակի մեջ և հանդիպել այն մարդկանց, որոնց շնորհիվ մեր գոյատևումը դարձավ առօրյա իրականություն՝ հարսանիք, մկրտություն, բերքահավաք, կորստի դիմանալ, երեխային մեծի անունով անվանել, որպեսզի անունը չմեռնի։ Այս էջի յուրաքանչյուր անուն մի կյանք է, որը հրաժարվեց մոռացվելուց։ Սա ապացույց է, որ քաոսը կարող է խլել հողը—բայց չի կարող խլել տոհմը։</p>
         </div>
     </div>
 </div>
