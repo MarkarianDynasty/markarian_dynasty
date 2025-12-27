@@ -9,55 +9,57 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        /* Dedication Modal Specific Styles */
+        /* --- NAVIGATION STYLES --- */
+        .nav-dedication-btn {
+            background: none; border: none; color: var(--gold);
+            cursor: pointer; font-family: inherit; font-size: 1rem;
+            margin-right: 25px; letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .nav-dedication-btn:hover { text-decoration: underline; color: white; }
+        
+        .nav-extra-item {
+            color: var(--charcoal); font-size: 0.95rem; 
+            margin-left: 20px; cursor: pointer;
+        }
+
+        /* --- DEDICATION MODAL STYLES --- */
         .modal-overlay {
-            display: none; /* STRICTLY HIDDEN */
+            display: none; /* Hidden by default */
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); z-index: 9999;
             align-items: center; justify-content: center;
+            cursor: pointer; /* Indicates you can click to close */
         }
         .dedication-content {
             background-color: #1a1a1a; color: #f0f0f0;
-            border: 2px solid var(--gold); padding: 50px;
-            max-width: 800px; max-height: 90vh; overflow-y: auto;
+            border: 2px solid var(--gold); padding: 40px;
+            width: 80%; max-width: 800px; max-height: 85vh; 
+            overflow-y: auto; /* Internal scroll */
             text-align: center; position: relative;
+            cursor: default; /* Don't close if clicking inside text */
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
         }
+        /* Sticky Close Button */
+        .sticky-close-btn {
+            position: sticky; top: 0; float: right;
+            background: #1a1a1a; border: 1px solid var(--pomegranate);
+            color: var(--pomegranate); font-size: 1.5rem;
+            width: 40px; height: 40px; line-height: 35px;
+            cursor: pointer; z-index: 100; border-radius: 50%;
+        }
+        .sticky-close-btn:hover { background: var(--pomegranate); color: white; }
     </style>
-
-    <script>
-        // --- DEDICATION MODAL FUNCTIONS ---
-        function openDedication() {
-            document.getElementById('dedication-modal').style.display = 'flex';
-        }
-        function closeDedication() {
-            document.getElementById('dedication-modal').style.display = 'none';
-        }
-
-        // --- LANGUAGE SWITCHER (For Dedication) ---
-        function setDedicationLanguage(lang) {
-            // Visual Toggle
-            document.getElementById('ded-btn-en').style.fontWeight = (lang === 'en') ? 'bold' : 'normal';
-            document.getElementById('ded-btn-hy').style.fontWeight = (lang === 'hy') ? 'bold' : 'normal';
-            document.getElementById('ded-btn-en').style.opacity = (lang === 'en') ? '1' : '0.5';
-            document.getElementById('ded-btn-hy').style.opacity = (lang === 'hy') ? '1' : '0.5';
-
-            // Content Toggle
-            if(lang === 'en') {
-                document.querySelector('.dedication-content .content-en').style.display = 'block';
-                document.querySelector('.dedication-content .content-hy').style.display = 'none';
-            } else {
-                document.querySelector('.dedication-content .content-en').style.display = 'none';
-                document.querySelector('.dedication-content .content-hy').style.display = 'block';
-            }
-        }
-    </script>
 </head>
 <body style="overflow: hidden;"> 
 
     <nav>
         <div class="logo">MARKARIAN<span style="color:var(--pomegranate)">DYNASTY</span></div>
         <div class="nav-links">
-            <button onclick="openDedication()" class="btn btn-gold" style="border:none; background:none; cursor:pointer;">THE DEDICATION</button>
+            <button onclick="openDedication()" class="nav-dedication-btn">THE DEDICATION</button>
+            
+            <span class="nav-extra-item">EN / <span class="armenian-text">ՀԱՅ</span></span>
+            <span class="nav-extra-item">SEARCH</span>
         </div>
     </nav>
 
@@ -80,7 +82,7 @@
                 <h1>The Markar Era</h1>
                 <h2 class="armenian-text">Մարգարեան Դարաշրջան</h2>
                 <p>From the villages of Bourvari to the rise of Tehran, and the expansion into the world. The story of <strong>Markar</strong>, his children, and the legacy built in the modern age.</p>
-                <a href="markar-era.html" class="btn btn-dark">Enter the Archive</a>
+                <a href="markar-era.html" class="btn btn-dark">Enter the Markar Era</a>
             </div>
             <div class="visual-layer-portrait"></div>
         </section>
@@ -98,9 +100,10 @@
         </div>
     </footer>
 
-    <div id="dedication-modal" class="modal-overlay">
-        <div class="dedication-content">
-            <button onclick="closeDedication()" style="position:absolute; top:20px; right:20px; background:none; border:none; color:#9A2A2A; font-size:2rem; cursor:pointer;">&times;</button>
+    <div id="dedication-modal" class="modal-overlay" onclick="closeDedication()">
+        <div class="dedication-content" onclick="event.stopPropagation()">
+            
+            <button class="sticky-close-btn" onclick="closeDedication()">&times;</button>
             
             <div style="margin-bottom:20px; color:#C5A059; cursor:pointer; font-family:'Playfair Display', serif;">
                 <span id="ded-btn-en" onclick="setDedicationLanguage('en')" style="font-weight:bold;">EN</span> | 
@@ -146,5 +149,37 @@
         </div>
     </div>
 
+    <script>
+        function openDedication() {
+            document.getElementById('dedication-modal').style.display = 'flex';
+        }
+        
+        function closeDedication() {
+            document.getElementById('dedication-modal').style.display = 'none';
+        }
+
+        // Language Switcher Logic (Inside Modal Only)
+        function setDedicationLanguage(lang) {
+            document.getElementById('ded-btn-en').style.fontWeight = (lang === 'en') ? 'bold' : 'normal';
+            document.getElementById('ded-btn-hy').style.fontWeight = (lang === 'hy') ? 'bold' : 'normal';
+            document.getElementById('ded-btn-en').style.opacity = (lang === 'en') ? '1' : '0.5';
+            document.getElementById('ded-btn-hy').style.opacity = (lang === 'hy') ? '1' : '0.5';
+
+            if(lang === 'en') {
+                document.querySelector('.dedication-content .content-en').style.display = 'block';
+                document.querySelector('.dedication-content .content-hy').style.display = 'none';
+            } else {
+                document.querySelector('.dedication-content .content-en').style.display = 'none';
+                document.querySelector('.dedication-content .content-hy').style.display = 'block';
+            }
+        }
+
+        // Close on Escape Key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeDedication();
+            }
+        });
+    </script>
 </body>
 </html>
