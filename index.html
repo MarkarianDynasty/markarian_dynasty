@@ -24,7 +24,7 @@
     <style>
         /* Special styles for the Dedication Plaque */
         .dedication-content {
-            background-color: #1a1a1a; /* Dark background */
+            background-color: #1a1a1a;
             color: #f0f0f0;
             border: 2px solid var(--gold);
             padding: 50px;
@@ -53,22 +53,31 @@
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1 class="main-title">The Markarian Legacy</h1>
-            <h2 class="armenian-title">Մարգարեան Գերդաստան</h2>
-            <p class="subtitle">1603 – Present</p>
-            <p class="intro-text">
-                From the Highlands of Ararat to the Bourvari cluster, and onto the world stage. 
-                A digital archive preserving the resilience, faith, and lineage of our ancestors.
-            </p>
-            
-            <div class="cta-container">
-                <a href="prologue.html" class="btn btn-gold">Begin the Journey (1603)</a>
-                <a href="markar-era.html" class="btn btn-dark">Enter the Markar Era (1900s)</a>
+    <main class="gateway-container">
+        
+        <section class="gateway-left">
+            <div class="content-wrapper">
+                <span class="era-label visible-date">1603 – 1900</span>
+                <h1>The Roots</h1>
+                <h2 class="armenian-text">Բազիկեան Արմատները</h2>
+                <p>The Forced Migration of 1603. From the Highlands of Ararat to the <strong>Bourvari region</strong> in Iran’s heartland. A story of resilience—faith and identity preserved, generation after generation.</p>
+                <a href="prologue.html" class="btn btn-gold">Explore the Origins</a>
             </div>
-        </div>
-    </header>
+            <div class="visual-layer" style="background-image: url('assets/images/tree-full.jpg');"></div>
+        </section>
+
+        <section class="gateway-right">
+            <div class="content-wrapper">
+                <span class="era-label">1900 – Present</span>
+                <h1>The Markar Era</h1>
+                <h2 class="armenian-text">Մարգարեան Դարաշրջան</h2>
+                <p>From the villages to the capital. The story of Markar and Morvarid, the eight pillars they raised, and the dynasty that grew from their sacrifice in Tehran.</p>
+                <a href="markar-era.html" class="btn btn-dark">Enter the Markar Era</a>
+            </div>
+             <div class="visual-layer" style="background-image: url('assets/images/markar-portrait.jpg');"></div>
+        </section>
+
+    </main>
 
     <div id="dedication-modal" class="book-modal">
         <div class="dedication-content">
