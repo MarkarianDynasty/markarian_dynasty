@@ -3,212 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Markarian Dynasty | 1602–Present</title>
+    <title>Markarian Dynasty | 1603–Present</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Noto+Serif+Armenian:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
+    <style>
+        /* Dedication Modal Specific Styles */
+        .modal-overlay {
+            display: none; /* STRICTLY HIDDEN */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 9999;
+            align-items: center; justify-content: center;
+        }
+        .dedication-content {
+            background-color: #1a1a1a; color: #f0f0f0;
+            border: 2px solid var(--gold); padding: 50px;
+            max-width: 800px; max-height: 90vh; overflow-y: auto;
+            text-align: center; position: relative;
+        }
+    </style>
+
     <script>
-        // DEDICATION MODAL LOGIC
+        // --- DEDICATION MODAL FUNCTIONS ---
         function openDedication() {
-            const modal = document.getElementById('dedication-modal');
-            modal.style.display = 'flex';
-            setTimeout(() => { modal.classList.add('open'); }, 10);
+            document.getElementById('dedication-modal').style.display = 'flex';
         }
         function closeDedication() {
-            const modal = document.getElementById('dedication-modal');
-            modal.classList.remove('open');
-            setTimeout(() => { modal.style.display = 'none'; }, 500);
+            document.getElementById('dedication-modal').style.display = 'none';
+        }
+
+        // --- LANGUAGE SWITCHER (For Dedication) ---
+        function setDedicationLanguage(lang) {
+            // Visual Toggle
+            document.getElementById('ded-btn-en').style.fontWeight = (lang === 'en') ? 'bold' : 'normal';
+            document.getElementById('ded-btn-hy').style.fontWeight = (lang === 'hy') ? 'bold' : 'normal';
+            document.getElementById('ded-btn-en').style.opacity = (lang === 'en') ? '1' : '0.5';
+            document.getElementById('ded-btn-hy').style.opacity = (lang === 'hy') ? '1' : '0.5';
+
+            // Content Toggle
+            if(lang === 'en') {
+                document.querySelector('.dedication-content .content-en').style.display = 'block';
+                document.querySelector('.dedication-content .content-hy').style.display = 'none';
+            } else {
+                document.querySelector('.dedication-content .content-en').style.display = 'none';
+                document.querySelector('.dedication-content .content-hy').style.display = 'block';
+            }
         }
     </script>
-
-    <style>
-        /* Dedication Modal Styles */
-        .dedication-content {
-            background-color: #1a1a1a;
-            color: #f0f0f0;
-            border: 2px solid var(--gold);
-            padding: 50px;
-            max-width: 800px; /* Wider for dual language */
-            text-align: center;
-            box-shadow: 0 0 50px rgba(197, 160, 89, 0.2);
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        .signature {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            margin-top: 30px;
-            color: var(--gold);
-            font-size: 1.5rem;
-        }
-        /* Nav Button Style */
-        .nav-dedication-btn {
-            background: none; 
-            border: none; 
-            color: var(--gold); 
-            cursor: pointer; 
-            font-family: inherit; 
-            font-size: 1rem; 
-            margin-right: 20px;
-            letter-spacing: 1px;
-        }
-        .nav-dedication-btn:hover { text-decoration: underline; }
-    </style>
 </head>
-<body>
+<body style="overflow: hidden;"> 
 
     <nav>
         <div class="logo">MARKARIAN<span style="color:var(--pomegranate)">DYNASTY</span></div>
         <div class="nav-links">
-            <button onclick="openDedication()" class="nav-dedication-btn">THE DEDICATION</button>
-            
-            <span>EN / <span class="armenian-text">ՀԱՅ</span></span>
-            <span style="margin-left:15px">SEARCH</span>
+            <button onclick="openDedication()" class="btn btn-gold" style="border:none; background:none; cursor:pointer;">THE DEDICATION</button>
         </div>
     </nav>
 
-    <main class="gateway-container">
+    <div class="gateway-container">
         
-       <section class="gateway-left">
-           <div class="content-wrapper">
-               <span class="era-label visible-date">1603 – 1900</span>
-               <h1>The Roots</h1>
-               <h2 class="armenian-text">Բազիկեան Արմատները</h2>
-               <p>The Forced Migration of 1603. From the Highlands of Ararat to the <strong>Bourvari region</strong> in Iran’s heartland. A story of resilience—faith and identity preserved, generation after generation.</p>
-               <a href="prologue.html" class="btn btn-gold">Explore the Origins</a>
-           </div>
-           <div class="visual-layer" style="background-image: url('assets/images/tree-full.jpg');"></div>
-       </section>
+        <section class="gateway-left">
+            <div class="content-wrapper">
+                <span class="era-label visible-date">1603 – 1900</span>
+                <h1>The Highlands</h1>
+                <h2 class="armenian-text">Հայրենիք</h2>
+                <p>The Forced Migration of 1603. From the Highlands of Ararat to the <strong>Bourvari region</strong> in Iran’s heartland. A story of resilience—faith and identity preserved, generation after generation.</p>
+                <a href="prologue.html" class="btn btn-gold">Explore the Origins</a>
+            </div>
+            <div class="visual-layer" style="background-image: url('assets/images/tree-full.jpg');"></div>
+        </section>
 
-       <section class="gateway-right">
-           <div class="visual-layer-portrait" style="background-image: url('assets/images/markar-portrait.jpg');"></div>
-           <div class="content-wrapper">
-               <span class="era-label">1900 – Present</span>
-               <h1>The Branches</h1>
-               <h2 class="armenian-text">Մարքարեան Գերդաստան</h2>
-               <p>The chronicle of <strong>Markar Markarian</strong>. From the villages of Markazi to the global diaspora. The living tree of his sons, daughters, and descendants.</p>
-               <a href="markar-era.html" class="btn btn-dark">Enter the Markar Era</a>
-           </div>
-       </section>
+        <section class="gateway-right">
+            <div class="content-wrapper">
+                <span class="era-label visible-date" style="color:#2C2C2C;">1900 – Present</span>
+                <h1>The Markar Era</h1>
+                <h2 class="armenian-text">Մարգարեան Դարաշրջան</h2>
+                <p>From the villages of Bourvari to the rise of Tehran, and the expansion into the world. The story of <strong>Markar</strong>, his children, and the legacy built in the modern age.</p>
+                <a href="markar-era.html" class="btn btn-dark">Enter the Archive</a>
+            </div>
+            <div class="visual-layer-portrait"></div>
+        </section>
 
-    </main>
+    </div>
 
     <footer class="archive-footer">
         <div class="archive-box">
-           <h3>The Six Pillars</h3>
-           <p>Biographies of the Sons & Daughters</p>
+            <h4>ARCHIVE STATUS</h4>
+            <p>System Online. 1603–2026 Records Loaded.</p>
         </div>
         <div class="archive-box">
-           <h3>The Visual Vault</h3>
-           <p>Photographic History (1920–2025)</p>
+            <h4>LANGUAGE</h4>
+            <p>English / <span class="armenian-text">Հայերեն</span></p>
         </div>
     </footer>
 
-    <div id="dedication-modal" class="book-modal">
+    <div id="dedication-modal" class="modal-overlay">
         <div class="dedication-content">
-            <button class="close-book-btn" onclick="closeDedication()" style="color:white;">×</button>
+            <button onclick="closeDedication()" style="position:absolute; top:20px; right:20px; background:none; border:none; color:#9A2A2A; font-size:2rem; cursor:pointer;">&times;</button>
             
-            <h2 style="font-family:'Playfair Display', serif; color:var(--gold); margin-bottom:10px;">The Curator's Dedication</h2>
-            <h3 class="armenian-text" style="color:white; font-size:1.5rem; margin-bottom:20px;">Ձոն</h3>
-            <hr style="border-color:#333; margin-bottom:30px;">
-            
-            <div style="margin-bottom: 30px;">
-                <p style="font-family:'Lato', sans-serif; line-height:1.8; font-size:1.1rem; margin-bottom:20px;">
-                    (Paste your English Dedication text here...)
-                </p>
-                <p style="font-family:'Lato', sans-serif; line-height:1.8; font-size:1.1rem;">
-                    (Paste more English text here...)
-                </p>
+            <div style="margin-bottom:20px; color:#C5A059; cursor:pointer; font-family:'Playfair Display', serif;">
+                <span id="ded-btn-en" onclick="setDedicationLanguage('en')" style="font-weight:bold;">EN</span> | 
+                <span id="ded-btn-hy" onclick="setDedicationLanguage('hy')" style="opacity:0.5;">ՀԱՅ</span>
             </div>
 
-            <hr style="width: 50%; border-color:#333; margin: 30px auto;">
-
-            <div class="armenian-text" style="margin-bottom: 30px;">
-                <p style="font-size:1.2rem; line-height:1.8; margin-bottom:20px;">
-                    (Paste your Armenian Dedication text here...)
-                </p>
+            <div class="content-en">
+                <h2 style="font-family:'Playfair Display', serif; color:#C5A059; margin-bottom:30px; font-size:2rem;">The Dedication</h2>
+                <p>To my father and mother, Khoodan and Haygoui (Nazik), and to my ancestors, who survived the impossible so that I could live. To my wife Anahid, and to my children, Vana and Ani. To my grandchildren, and to the future descendants who will live to tell our story.</p>
+                <p>This digital archive was built in the year 2026. It was a labor of love, pieced together from fading papers, old photographs, and the memories of our elders.</p>
+                <p>I did not create this history; I simply gathered it before the winds of time could blow it away. In doing so, it was my duty to restore the whole picture: to finally include the names of the women—our mothers, sisters, wives, and daughters—who were missing from the old charts, and to build upon the work of those who kept the record before me, including Andranik (1970s) and my cousin Adriana Karapetian.</p>
+                <p>I built this place because I know that life brings storms. There will be days when the road ahead feels dark or uncertain. In those moments, I want you to look back here and remember:</p>
+                <p style="font-family:'Playfair Display', serif; font-style:italic; font-size:1.5rem; color:#C5A059; margin: 35px 0; letter-spacing:1px;">"You come from a people who do not break."</p>
+                <p>Our roots were not planted in easy soil; they were forged in the fire of survival. Through forced marches, through the poverty of the village years, and through the rebuilding of life from nothing, this family held on to each other. That strength runs in your blood. It is the quiet inheritance that keeps us standing when the world shakes.</p>
+                <p>So, 100 years from now, when you search for who you are, I hope you find this light left on for you.</p>
+                <p>My only request is that you keep it burning. Add your own branch. Tell your own story. And never forget that you are part of a long line of people who knew how to build, how to endure, and how to love.</p>
+                <div class="signature" style="margin-top:40px;">
+                    With hope for the future,<br><br>
+                    <span style="font-size:1.6rem; color:#C5A059; font-family:'Playfair Display', serif;">Raffi Markarian</span><br>
+                    <span style="font-size:0.8rem; font-family:'Lato', sans-serif; opacity:0.8; letter-spacing:1px; text-transform:uppercase;">Custodian of the Markarian Legacy</span><br>
+                    <span style="font-size:0.8rem; font-family:'Lato', sans-serif; opacity:0.6;">Ottawa, 2026</span>
+                </div>
             </div>
 
-            <div class="signature">
-                - The Curator
+            <div class="content-hy" style="display:none;">
+                <h2 class="armenian-text" style="color:#C5A059; margin-bottom:30px; font-size:2rem;">Ձոն</h2>
+                <p class="armenian-text">Հորս և մորս՝ Խուդանին և Հայկուհուն (Նազիկին), և իմ նախնիներին, ովքեր վերապրեցին անհնարինը, որպեսզի ես կարողանամ ապրել։ Կնոջս՝ Անահիտին, և զավակներիս՝ Վանային (Քաթյաին) և Անիին։ Թոռներիս և ապագա սերունդներին, ովքեր շարունակելու են պատմել մեր պատմությունը։</p>
+                <p class="armenian-text">Այս թվային արխիվը կառուցվել է 2026 թվականին։ Այն սիրո աշխատանք է՝ հավաքված խունացած թղթերից, հին լուսանկարներից և մեր մեծերի հիշողություններից։</p>
+                <p class="armenian-text">Ես չեմ ստեղծել այս պատմությունը, ես պարզապես հավաքել եմ այն, նախքան ժամանակի քամիները կցրեին այն։ Այս գործն անելիս իմ պարտքն էր վերականգնել ամբողջական պատկերը. ի վերջո ավելացնել մեր մայրերի, քույրերի, կանանց և դուստրերի անունները, որոնք բացակայում էին հին աղյուսակներից, և շարունակել նրանց գործը, ովքեր պահել են գրառումները ինձանից առաջ, այդ թվում՝ Անդրանիկի (1970-ականներ) և Ադրինէ Կարապետյանի (Ավստրալյա, 2010)։</p>
+                <p class="armenian-text">Ես կառուցեցի այս տեղը, քանի որ գիտեմ, որ կյանքը փոթորիկներ է բերում։ Կլինեն օրեր, երբ ճանապարհը մութ կամ անորոշ կթվա։ Այդ պահերին ուզում եմ, որ հետ նայեք այստեղ և հիշեք.</p>
+                <p class="armenian-text" style="font-size:1.6rem; color:#C5A059; margin: 35px 0; letter-spacing:0.5px; font-weight:bold;">«Դուք սերում եք մի ժողովրդից, որը չի կոտրվում։»</p>
+                <p class="armenian-text">Մեր արմատները հեշտ հողում չեն տնկվել, դրանք կոփվել են գոյատևման կրակի մեջ: Բռնագաղթի, գյուղական աղքատության տարիների և ոչնչից կյանքը վերակառուցելու միջով այս ընտանիքը պահեց միմյանց: Այդ ուժը հոսում է ձեր երակներում։ Դա այն լուռ ժառանգությունն է, որը մեզ կանգուն է պահում, երբ աշխարհը ցնցվում է։</p>
+                <p class="armenian-text">Ուստի, 100 տարի անց, երբ փնտրեք, թե ով եք դուք, հուսով եմ, որ կգտնեք ձեզ համար վառ թողած այս լույսը։</p>
+                <p class="armenian-text">Իմ միակ խնդրանքն այն է, որ այն վառ պահեք։ Ավելացրեք ձեր ճյուղը։ Պատմեք ձեր պատմությունը: Եվ երբեք մի մոռացեք, որ դուք մի մասն եք մարդկանց այն երկար շարքի, ովքեր գիտեին՝ ինչպես կառուցել, ինչպես դիմանալ և ինչպես սիրել:</p>
+                <div class="signature" style="margin-top:40px;">
+                    <span class="armenian-text">Հույսով դեպի ապագան՝</span><br><br>
+                    <span class="armenian-text" style="font-size:1.6rem; color:#C5A059;">Րաֆֆի Մարգարյան</span><br>
+                    <span class="armenian-text" style="font-size:0.9rem; opacity:0.8; text-transform:uppercase;">Մարգարյան Ժառանգության Պահապան</span><br>
+                    <span class="armenian-text" style="font-size:0.8rem; opacity:0.6;">Օտտավա, 2026</span>
+                </div>
             </div>
+
         </div>
     </div>
-<div id="dedication-modal" class="modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:2000; align-items:center; justify-content:center;">
-    
-    <div class="dedication-content">
-        <button onclick="closeDedication()" style="position:absolute; top:20px; right:20px; background:none; border:none; color:#9A2A2A; font-size:2rem; cursor:pointer;">&times;</button>
-        
-        <div class="content-en">
-            <h2 style="font-family:'Playfair Display', serif; color:#C5A059; margin-bottom:30px; font-size:2rem;">The Dedication</h2>
-            
-            <p>To my father and mother, Khoodan and Haygoui (Nazik), and to my ancestors, who survived the impossible so that I could live. To my wife Anahid, and to my children, Vana and Ani. To my grandchildren, and to the future descendants who will live to tell our story.</p>
-            
-            <p>This digital archive was built in the year 2026. It was a labor of love, pieced together from fading papers, old photographs, and the memories of our elders.</p>
-            
-            <p>I did not create this history; I simply gathered it before the winds of time could blow it away. In doing so, it was my duty to restore the whole picture: to finally include the names of the women—our mothers, sisters, wives, and daughters—who were missing from the old charts, and to build upon the work of those who kept the record before me, including Andranik (1970s) and my cousin Adriana Karapetian.</p>
-            
-            <p>I built this place because I know that life brings storms. There will be days when the road ahead feels dark or uncertain. In those moments, I want you to look back here and remember:</p>
-            
-            <p style="font-family:'Playfair Display', serif; font-style:italic; font-size:1.5rem; color:#C5A059; margin: 35px 0; letter-spacing:1px;">
-                "You come from a people who do not break."
-            </p>
-            
-            <p>Our roots were not planted in easy soil; they were forged in the fire of survival. Through forced marches, through the poverty of the village years, and through the rebuilding of life from nothing, this family held on to each other. That strength runs in your blood. It is the quiet inheritance that keeps us standing when the world shakes.</p>
-            
-            <p>So, 100 years from now, when you search for who you are, I hope you find this light left on for you.</p>
-            
-            <p>My only request is that you keep it burning. Add your own branch. Tell your own story. And never forget that you are part of a long line of people who knew how to build, how to endure, and how to love.</p>
-            
-            <div class="signature">
-                With hope for the future,<br><br>
-                <span style="font-size:1.6rem; color:#C5A059;">Raffi Markarian</span><br>
-                <span style="font-size:0.9rem; font-family:'Lato', sans-serif; opacity:0.8; letter-spacing:1px; text-transform:uppercase;">Custodian of the Markarian Legacy</span><br>
-                <span style="font-size:0.8rem; font-family:'Lato', sans-serif; opacity:0.6;">Ottawa, 2026</span>
-            </div>
-        </div>
 
-        <div class="content-hy">
-            <h2 class="armenian-text" style="color:#C5A059; margin-bottom:30px; font-size:2rem;">Ձոն</h2>
-            
-            <p class="armenian-text">Հորս և մորս՝ Խուդանին և Հայկուհուն (Նազիկին), և իմ նախնիներին, ովքեր վերապրեցին անհնարինը, որպեսզի ես կարողանամ ապրել։ Կնոջս՝ Անահիտին, և զավակներիս՝ Վանային (Քաթյաին) և Անիին։ Թոռներիս և ապագա սերունդներին, ովքեր շարունակելու են պատմել մեր պատմությունը։</p>
-            
-            <p class="armenian-text">Այս թվային արխիվը կառուցվել է 2026 թվականին։ Այն սիրո աշխատանք է՝ հավաքված խունացած թղթերից, հին լուսանկարներից և մեր մեծերի հիշողություններից։</p>
-            
-            <p class="armenian-text">Ես չեմ ստեղծել այս պատմությունը, ես պարզապես հավաքել եմ այն, նախքան ժամանակի քամիները կցրեին այն։ Այս գործն անելիս իմ պարտքն էր վերականգնել ամբողջական պատկերը. ի վերջո ավելացնել մեր մայրերի, քույրերի, կանանց և դուստրերի անունները, որոնք բացակայում էին հին աղյուսակներից, և շարունակել նրանց գործը, ովքեր պահել են գրառումները ինձանից առաջ, այդ թվում՝ Անդրանիկի (1970-ականներ) և Ադրինէ Կարապետյանի (Ավստրալյա, 2010)։</p>
-            
-            <p class="armenian-text">Ես կառուցեցի այս տեղը, քանի որ գիտեմ, որ կյանքը փոթորիկներ է բերում։ Կլինեն օրեր, երբ ճանապարհը մութ կամ անորոշ կթվա։ Այդ պահերին ուզում եմ, որ հետ նայեք այստեղ և հիշեք.</p>
-            
-            <p class="armenian-text" style="font-size:1.6rem; color:#C5A059; margin: 35px 0; letter-spacing:0.5px; font-weight:bold;">
-                «Դուք սերում եք մի ժողովրդից, որը չի կոտրվում։»
-            </p>
-            
-            <p class="armenian-text">Մեր արմատները հեշտ հողում չեն տնկվել, դրանք կոփվել են գոյատևման կրակի մեջ: Բռնագաղթի, գյուղական աղքատության տարիների և ոչնչից կյանքը վերակառուցելու միջով այս ընտանիքը պահեց միմյանց: Այդ ուժը հոսում է ձեր երակներում։ Դա այն լուռ ժառանգությունն է, որը մեզ կանգուն է պահում, երբ աշխարհը ցնցվում է։</p>
-            
-            <p class="armenian-text">Ուստի, 100 տարի անց, երբ փնտրեք, թե ով եք դուք, հուսով եմ, որ կգտնեք ձեզ համար վառ թողած այս լույսը։</p>
-            
-            <p class="armenian-text">Իմ միակ խնդրանքն այն է, որ այն վառ պահեք։ Ավելացրեք ձեր ճյուղը։ Պատմեք ձեր պատմությունը: Եվ երբեք մի մոռացեք, որ դուք մի մասն եք մարդկանց այն երկար շարքի, ովքեր գիտեին՝ ինչպես կառուցել, ինչպես դիմանալ և ինչպես սիրել:</p>
-            
-            <div class="signature">
-                <span class="armenian-text">Հույսով դեպի ապագան՝</span><br><br>
-                <span class="armenian-text" style="font-size:1.6rem; color:#C5A059;">Րաֆֆի Մարգարյան</span><br>
-                <span class="armenian-text" style="font-size:0.9rem; opacity:0.8; text-transform:uppercase;">Մարգարյան Ժառանգության Պահապան</span><br>
-                <span class="armenian-text" style="font-size:0.8rem; opacity:0.6;">Օտտավա, 2026</span>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<script>
-    function openDedication() {
-        document.getElementById('dedication-modal').style.display = 'flex';
-    }
-    function closeDedication() {
-        document.getElementById('dedication-modal').style.display = 'none';
-    }
-</script>
-    
 </body>
 </html>
