@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markarian Dynasty | The Digital Museum</title>
+    <title>The Markarian Dynasty | 1602–Present</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Noto+Serif+Armenian:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    
+
     <script>
         // DEDICATION MODAL LOGIC
         function openDedication() {
@@ -22,16 +22,18 @@
     </script>
 
     <style>
-        /* Special styles for the Dedication Plaque */
+        /* Dedication Modal Styles */
         .dedication-content {
             background-color: #1a1a1a;
             color: #f0f0f0;
             border: 2px solid var(--gold);
             padding: 50px;
-            max-width: 700px;
+            max-width: 800px; /* Wider for dual language */
             text-align: center;
             box-shadow: 0 0 50px rgba(197, 160, 89, 0.2);
             position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
         }
         .signature {
             font-family: 'Playfair Display', serif;
@@ -40,62 +42,93 @@
             color: var(--gold);
             font-size: 1.5rem;
         }
+        /* Nav Button Style */
+        .nav-dedication-btn {
+            background: none; 
+            border: none; 
+            color: var(--gold); 
+            cursor: pointer; 
+            font-family: inherit; 
+            font-size: 1rem; 
+            margin-right: 20px;
+            letter-spacing: 1px;
+        }
+        .nav-dedication-btn:hover { text-decoration: underline; }
     </style>
 </head>
-<body class="home-body">
+<body>
 
     <nav>
-        <div class="logo">MARKARIAN <span style="color:var(--pomegranate)">DYNASTY</span></div>
+        <div class="logo">MARKARIAN<span style="color:var(--pomegranate)">DYNASTY</span></div>
         <div class="nav-links">
-            <button onclick="openDedication()" style="background:none; border:none; color:var(--gold); cursor:pointer; font-family:inherit; font-size:1rem; border-bottom:1px solid transparent; transition:0.3s;">
-                The Curator's Dedication
-            </button>
+            <button onclick="openDedication()" class="nav-dedication-btn">THE DEDICATION</button>
+            
+            <span>EN / <span class="armenian-text">ՀԱՅ</span></span>
+            <span style="margin-left:15px">SEARCH</span>
         </div>
     </nav>
 
     <main class="gateway-container">
         
-        <section class="gateway-left">
-            <div class="content-wrapper">
-                <span class="era-label visible-date">1603 – 1900</span>
-                <h1>The Roots</h1>
-                <h2 class="armenian-text">Բազիկեան Արմատները</h2>
-                <p>The Forced Migration of 1603. From the Highlands of Ararat to the <strong>Bourvari region</strong> in Iran’s heartland. A story of resilience—faith and identity preserved, generation after generation.</p>
-                <a href="prologue.html" class="btn btn-gold">Explore the Origins</a>
-            </div>
-            <div class="visual-layer" style="background-image: url('assets/images/tree-full.jpg');"></div>
-        </section>
+       <section class="gateway-left">
+           <div class="content-wrapper">
+               <span class="era-label visible-date">1603 – 1900</span>
+               <h1>The Roots</h1>
+               <h2 class="armenian-text">Բազիկեան Արմատները</h2>
+               <p>The Forced Migration of 1603. From the Highlands of Ararat to the <strong>Bourvari region</strong> in Iran’s heartland. A story of resilience—faith and identity preserved, generation after generation.</p>
+               <a href="prologue.html" class="btn btn-gold">Explore the Origins</a>
+           </div>
+           <div class="visual-layer" style="background-image: url('assets/images/tree-full.jpg');"></div>
+       </section>
 
-        <section class="gateway-right">
-            <div class="content-wrapper">
-                <span class="era-label">1900 – Present</span>
-                <h1>The Markar Era</h1>
-                <h2 class="armenian-text">Մարգարեան Դարաշրջան</h2>
-                <p>From the villages to the capital. The story of Markar and Morvarid, the eight pillars they raised, and the dynasty that grew from their sacrifice in Tehran.</p>
-                <a href="markar-era.html" class="btn btn-dark">Enter the Markar Era</a>
-            </div>
-             <div class="visual-layer" style="background-image: url('assets/images/markar-portrait.jpg');"></div>
-        </section>
+       <section class="gateway-right">
+           <div class="visual-layer-portrait" style="background-image: url('assets/images/markar-portrait.jpg');"></div>
+           <div class="content-wrapper">
+               <span class="era-label">1900 – Present</span>
+               <h1>The Branches</h1>
+               <h2 class="armenian-text">Մարքարեան Գերդաստան</h2>
+               <p>The chronicle of <strong>Markar Markarian</strong>. From the villages of Markazi to the global diaspora. The living tree of his sons, daughters, and descendants.</p>
+               <a href="markar-era.html" class="btn btn-dark">Enter the Markar Era</a>
+           </div>
+       </section>
 
     </main>
+
+    <footer class="archive-footer">
+        <div class="archive-box">
+           <h3>The Six Pillars</h3>
+           <p>Biographies of the Sons & Daughters</p>
+        </div>
+        <div class="archive-box">
+           <h3>The Visual Vault</h3>
+           <p>Photographic History (1920–2025)</p>
+        </div>
+    </footer>
 
     <div id="dedication-modal" class="book-modal">
         <div class="dedication-content">
             <button class="close-book-btn" onclick="closeDedication()" style="color:white;">×</button>
             
-            <h2 style="font-family:'Playfair Display', serif; color:var(--gold); margin-bottom:20px;">Why I Built This</h2>
+            <h2 style="font-family:'Playfair Display', serif; color:var(--gold); margin-bottom:10px;">The Curator's Dedication</h2>
+            <h3 class="armenian-text" style="color:white; font-size:1.5rem; margin-bottom:20px;">Ձոն</h3>
             <hr style="border-color:#333; margin-bottom:30px;">
             
-            <p style="font-family:'Lato', sans-serif; line-height:1.8; font-size:1.1rem; margin-bottom:20px;">
-                I am an immigration specialist by trade, and for 15 years I helped families cross borders to find new lives. 
-                But long before that, my own family crossed rivers and mountains—not for papers, but for survival.
-            </p>
-            <p style="font-family:'Lato', sans-serif; line-height:1.8; font-size:1.1rem;">
-                I built this museum not just to list names and dates, but to honor the silence between them. 
-                To ensure that the struggle of the Bourvari villages, the resilience of the 5 Brothers, 
-                and the vision of Markar and Morvarid are never lost to time. 
-                This is for the generations who will come after us—so they may know whose shoulders they stand upon.
-            </p>
+            <div style="margin-bottom: 30px;">
+                <p style="font-family:'Lato', sans-serif; line-height:1.8; font-size:1.1rem; margin-bottom:20px;">
+                    (Paste your English Dedication text here...)
+                </p>
+                <p style="font-family:'Lato', sans-serif; line-height:1.8; font-size:1.1rem;">
+                    (Paste more English text here...)
+                </p>
+            </div>
+
+            <hr style="width: 50%; border-color:#333; margin: 30px auto;">
+
+            <div class="armenian-text" style="margin-bottom: 30px;">
+                <p style="font-size:1.2rem; line-height:1.8; margin-bottom:20px;">
+                    (Paste your Armenian Dedication text here...)
+                </p>
+            </div>
 
             <div class="signature">
                 - The Curator
