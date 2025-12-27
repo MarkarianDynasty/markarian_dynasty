@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     
     <script>
-        // Tribute Modal Logic
+        // Tribute Modal Logic (For Mayrik & Vanik)
         function openTribute(name, text) {
             const modal = document.getElementById('tribute-modal');
             document.getElementById('tribute-name').innerText = name;
@@ -17,6 +17,14 @@
         }
         function closeTribute() {
             document.getElementById('tribute-modal').style.display = 'none';
+        }
+
+        // Founders Chronicle Logic (For Markar & Morvarid)
+        function openChronicle() {
+            document.getElementById('founders-modal').style.display = 'flex';
+        }
+        function closeChronicle() {
+            document.getElementById('founders-modal').style.display = 'none';
         }
     </script>
 </head>
@@ -32,10 +40,14 @@
     <header class="founders-hero">
         <div class="hero-gradient">
             <h1 style="font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 10px; color: var(--gold);">The Founders</h1>
-            <h2 class="armenian-text" style="color:white; font-size: 2rem;">Մարքար եւ Մորվարիդ</h2>
+            <h2 class="armenian-text" style="color:white; font-size: 2rem;">Մարգար եւ Մարգարիտ</h2>
             <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto; opacity: 0.9;">
                 The Bridge between the Old World and the New.
             </p>
+            <br>
+            <button onclick="openChronicle()" class="btn btn-gold">
+                📖 Read the Founders' Tale
+            </button>
         </div>
     </header>
 
@@ -51,57 +63,57 @@
             </div>
         </div>
 
-        <div class="pillar-card card-living">
+        <div class="pillar-card card-living" onclick="window.location.href='wing-shirin.html'">
             <div class="img-placeholder">Image Coming Soon</div>
             <div class="card-info">
                 <h3>Shirin</h3>
                 <h4 class="armenian-text">Շիրին</h4>
-                <p>The Second Child</p>
+                <p>Enter the Wing →</p>
             </div>
         </div>
 
-        <div class="pillar-card card-living">
+        <div class="pillar-card card-living" onclick="window.location.href='wing-ghalamkar.html'">
             <div class="img-placeholder">Image Coming Soon</div>
             <div class="card-info">
                 <h3>Ghalamkar</h3>
                 <h4 class="armenian-text">Ղալամքար</h4>
-                <p>The Third Child</p>
+                <p>Enter the Wing →</p>
             </div>
         </div>
 
-        <div class="pillar-card card-living">
+        <div class="pillar-card card-living" onclick="window.location.href='wing-hrand.html'">
             <div class="img-placeholder">Image Coming Soon</div>
             <div class="card-info">
                 <h3>Hrand</h3>
                 <h4 class="armenian-text">Հրանդ</h4>
-                <p>The Fourth Child</p>
+                <p>Enter the Wing →</p>
             </div>
         </div>
 
-        <div class="pillar-card card-living">
+        <div class="pillar-card card-living" onclick="window.location.href='wing-frand.html'">
             <div class="img-placeholder">Image Coming Soon</div>
             <div class="card-info">
                 <h3>Frand</h3>
                 <h4 class="armenian-text">Ֆրանդ</h4>
-                <p>The Fifth Child</p>
+                <p>Enter the Wing →</p>
             </div>
         </div>
 
-        <div class="pillar-card card-living">
+        <div class="pillar-card card-living" onclick="window.location.href='wing-khoodan.html'">
             <div class="img-placeholder">Image Coming Soon</div>
             <div class="card-info">
                 <h3>Khoodan</h3>
                 <h4 class="armenian-text">Խուդան</h4>
-                <p>The Sixth Child</p>
+                <p>Enter the Wing →</p>
             </div>
         </div>
 
-        <div class="pillar-card card-living">
+        <div class="pillar-card card-living" onclick="window.location.href='wing-moushegh.html'">
             <div class="img-placeholder">Image Coming Soon</div>
             <div class="card-info">
                 <h3>Moushegh</h3>
                 <h4 class="armenian-text">Մուշեղ</h4>
-                <p>The Seventh Child</p>
+                <p>Enter the Wing →</p>
             </div>
         </div>
 
@@ -124,6 +136,18 @@
             <p id="tribute-text" style="line-height: 1.6; color:#555;"></p>
             <br>
             <button class="btn btn-dark" style="background:transparent; color:#333; border:1px solid #ccc;">Close Tribute</button>
+        </div>
+    </div>
+
+    <div id="founders-modal" class="book-modal">
+        <div class="book-content">
+            <button class="close-book-btn" onclick="closeChronicle()">×</button>
+            <div class="content-en">
+                <h2>Markar & Morvarid: The Chronicle</h2>
+                <hr>
+                <p><em>(This is where the story of Markar and Morvarid will go. From the early days in the village to the migration and the building of the family in Tehran...)</em></p>
+                <p>It is a story of resilience, faith, and the quiet strength of family.</p>
+                </div>
         </div>
     </div>
 
