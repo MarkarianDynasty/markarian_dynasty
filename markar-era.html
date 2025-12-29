@@ -3,153 +3,348 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Markar Era | The 8 Pillars</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Noto+Serif+Armenian:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <title>The Markar Era | Markarian Dynasty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Noto+Serif+Armenian:wght@400;700&family=Playfair+Display:wght@400;700&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     
     <script>
-        // Tribute Modal Logic (For Mayrik & Vanik)
-        function openTribute(name, text) {
-            const modal = document.getElementById('tribute-modal');
-            document.getElementById('tribute-name').innerText = name;
-            document.getElementById('tribute-text').innerText = text;
-            modal.style.display = 'flex';
-        }
-        function closeTribute() {
-            document.getElementById('tribute-modal').style.display = 'none';
+        // --- DYNASTY ENGINE ---
+        function setLanguage(lang) {
+            document.body.classList.remove('lang-en', 'lang-hy');
+            document.body.classList.add('lang-' + lang);
+            document.getElementById('btn-en').classList.remove('active');
+            document.getElementById('btn-hy').classList.remove('active');
+            document.getElementById('btn-' + lang).classList.add('active');
         }
 
-        // Founders Chronicle Logic (For Markar & Morvarid)
-        function openChronicle() {
-            document.getElementById('founders-modal').style.display = 'flex';
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!document.body.classList.contains('lang-hy')) { setLanguage('en'); }
+            
+            const dots = document.querySelectorAll('.timeline-year');
+            const scrollArea = document.querySelector('.gallery-scroll-area');
+
+            scrollArea.addEventListener('scroll', () => {
+                let index = Math.round(scrollArea.scrollTop / window.innerHeight);
+                dots.forEach(d => d.classList.remove('active'));
+                if(dots[index]) { dots[index].classList.add('active'); }
+            });
+        });
+
+        function scrollToRoom(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+        
+        function openBook(id) {
+            const m = document.getElementById(id); m.style.display='flex';
+            setTimeout(()=>{m.classList.add('open')},10);
         }
-        function closeChronicle() {
-            document.getElementById('founders-modal').style.display = 'none';
+        function closeBook(id) {
+            const m = document.getElementById(id); m.classList.remove('open');
+            setTimeout(()=>{m.style.display='none'},500);
         }
     </script>
 </head>
-<body style="background-color: var(--bg-parchment);">
+<body class="lang-en" style="background-color: #1a1a1a; overflow: hidden;">
 
-    <nav>
-        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">MARKARIAN <span style="color:var(--pomegranate)">DYNASTY</span></a></div>
-        <div class="nav-links">
-            <a href="index.html" style="text-decoration:none; color:inherit;">← MUSEUM LOBBY</a>
+<div class="museum-container">
+
+    <aside class="timeline-sidebar">
+        <div class="logo" style="color:white; font-size:1.2rem; margin-bottom:20px;">
+            <a href="index.html" style="color:inherit; text-decoration:none;">← HOME</a>
         </div>
-    </nav>
 
-    <header class="founders-hero">
-        <div class="hero-gradient">
-            <h1 style="font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 10px; color: var(--gold);">The Founders</h1>
-            <h2 class="armenian-text" style="color:white; font-size: 2rem;">Մարգար եւ Մարգարիտ</h2>
-            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto; opacity: 0.9;">
-                The Bridge between the Old World and the New.
-            </p>
-            <br>
-            <button onclick="openChronicle()" class="btn btn-gold">
-                📖 Read the Founders' Tale
-            </button>
+        <div class="lang-switch" onclick="document.body.classList.contains('lang-en') ? setLanguage('hy') : setLanguage('en')">
+            <span id="btn-en" class="active">EN</span> | <span id="btn-hy">ՀԱՅ</span>
         </div>
-    </header>
 
-    <main class="rotunda-grid">
+        <div class="timeline-year active" onclick="scrollToRoom('room-1')">
+            <span class="content-en">Child 1</span><span class="content-hy">Զավակ 1</span>
+        </div>
+        <div class="timeline-year" onclick="scrollToRoom('room-2')">
+            <span class="content-en">Child 2</span><span class="content-hy">Զավակ 2</span>
+        </div>
+        <div class="timeline-year" onclick="scrollToRoom('room-3')">
+            <span class="content-en">Child 3</span><span class="content-hy">Զավակ 3</span>
+        </div>
+        <div class="timeline-year" onclick="scrollToRoom('room-4')">
+            <span class="content-en">Child 4</span><span class="content-hy">Զավակ 4</span>
+        </div>
+        <div class="timeline-year" onclick="scrollToRoom('room-5')">
+            <span class="content-en">Child 5</span><span class="content-hy">Զավակ 5</span>
+        </div>
+        <div class="timeline-year" onclick="scrollToRoom('room-6')">
+            <span class="content-en">Child 6</span><span class="content-hy">Զավակ 6</span>
+        </div>
+        
+        <div class="timeline-year" onclick="scrollToRoom('room-7')">
+            <span class="content-en">Mayrik</span><span class="content-hy">Մայրիկ</span>
+        </div>
+        <div class="timeline-year" onclick="scrollToRoom('room-8')">
+            <span class="content-en">Vanik</span><span class="content-hy">Վանիկ</span>
+        </div>
+    </aside>
 
-        <div class="pillar-card card-memorial" onclick="openTribute('Mayrik (The Firstborn)', 'Born approx 1922. The eldest daughter who remains in our memory as the first bloom of the Markarian tree. Married to Zohrab Mesropian and passed away before having children')">
-            <div class="memorial-content">
-                <div class="memorial-icon">🕊️</div>
-                <h2 style="font-family: 'Playfair Display', serif;">Mayrik</h2>
-                <h3 class="armenian-text" style="font-size:1.2rem; color:#888;">Մայրիկ</h3>
-                <p style="font-size:0.9rem; margin-top:10px;">Circa 1922</p>
-                <small style="text-transform:uppercase; letter-spacing:1px; margin-top:20px;">In Memoriam</small>
+    <main class="gallery-scroll-area">
+
+        <section class="museum-room" id="room-1">
+            <div class="slideshow-container cycle-4">
+                <div class="slide" style="background-image: url('assets/images/markar-child1-a.jpg');"></div>
             </div>
-        </div>
-
-        <div class="pillar-card card-living" onclick="window.location.href='wing-shirin.html'">
-            <div class="img-placeholder">Image Coming Soon</div>
-            <div class="card-info">
-                <h3>Shirin</h3>
-                <h4 class="armenian-text">Շիրին</h4>
-                <p>Enter the Wing →</p>
+            <div class="room-overlay vibe-gold" style="position:relative; z-index:2;">
+                <span class="era-label" style="color:var(--gold)">
+                    <span class="content-en">The Lineage</span><span class="content-hy">Տոհմաշար</span>
+                </span>
+                <h1>
+                    <span class="content-en">Name of Child 1</span><span class="content-hy">Անուն 1</span>
+                </h1>
+                <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                    <button class="btn btn-gold" onclick="openBook('book-1')">
+                        <span class="content-en">📖 Read Chronicle</span><span class="content-hy">📖 Կարդալ</span>
+                    </button>
+                    <a href="branch-child1.html" class="btn btn-dark" style="border-color:white; color:white;">
+                        <span class="content-en">Enter Lineage →</span><span class="content-hy">Մուտք Ճյուղ →</span>
+                    </a>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="pillar-card card-living" onclick="window.location.href='wing-ghalamkar.html'">
-            <div class="img-placeholder">Image Coming Soon</div>
-            <div class="card-info">
-                <h3>Ghalamkar</h3>
-                <h4 class="armenian-text">Ղալամքար</h4>
-                <p>Enter the Wing →</p>
+        <section class="museum-room" id="room-2">
+            <div class="slideshow-container cycle-4">
+                <div class="slide" style="background-image: url('assets/images/markar-child2-a.jpg');"></div>
             </div>
-        </div>
+            <div class="room-overlay vibe-gold" style="position:relative; z-index:2;">
+                <h1>
+                    <span class="content-en">Name of Child 2</span><span class="content-hy">Անուն 2</span>
+                </h1>
+                <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                    <button class="btn btn-gold" onclick="openBook('book-2')">
+                        <span class="content-en">📖 Read Chronicle</span><span class="content-hy">📖 Կարդալ</span>
+                    </button>
+                    <a href="branch-child2.html" class="btn btn-dark" style="border-color:white; color:white;">
+                        <span class="content-en">Enter Lineage →</span><span class="content-hy">Մուտք Ճյուղ →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-        <div class="pillar-card card-living" onclick="window.location.href='wing-hrand.html'">
-            <div class="img-placeholder">Image Coming Soon</div>
-            <div class="card-info">
-                <h3>Hrand</h3>
-                <h4 class="armenian-text">Հրանդ</h4>
-                <p>Enter the Wing →</p>
+        <section class="museum-room" id="room-3">
+             <div class="slideshow-container cycle-4">
+                <div class="slide" style="background-image: url('assets/images/markar-child3-a.jpg');"></div>
             </div>
-        </div>
+            <div class="room-overlay vibe-gold" style="position:relative; z-index:2;">
+                <h1>
+                    <span class="content-en">Name of Child 3</span><span class="content-hy">Անուն 3</span>
+                </h1>
+                <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                    <button class="btn btn-gold" onclick="openBook('book-3')">
+                        <span class="content-en">📖 Read Chronicle</span><span class="content-hy">📖 Կարդալ</span>
+                    </button>
+                    <a href="branch-child3.html" class="btn btn-dark" style="border-color:white; color:white;">
+                        <span class="content-en">Enter Lineage →</span><span class="content-hy">Մուտք Ճյուղ →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-        <div class="pillar-card card-living" onclick="window.location.href='wing-frand.html'">
-            <div class="img-placeholder">Image Coming Soon</div>
-            <div class="card-info">
-                <h3>Frand</h3>
-                <h4 class="armenian-text">Ֆրանդ</h4>
-                <p>Enter the Wing →</p>
+        <section class="museum-room" id="room-4">
+             <div class="slideshow-container cycle-4">
+                <div class="slide" style="background-image: url('assets/images/markar-child4-a.jpg');"></div>
             </div>
-        </div>
+            <div class="room-overlay vibe-gold" style="position:relative; z-index:2;">
+                <h1>
+                    <span class="content-en">Name of Child 4</span><span class="content-hy">Անուն 4</span>
+                </h1>
+                <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                    <button class="btn btn-gold" onclick="openBook('book-4')">
+                        <span class="content-en">📖 Read Chronicle</span><span class="content-hy">📖 Կարդալ</span>
+                    </button>
+                    <a href="branch-child4.html" class="btn btn-dark" style="border-color:white; color:white;">
+                        <span class="content-en">Enter Lineage →</span><span class="content-hy">Մուտք Ճյուղ →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-        <div class="pillar-card card-living" onclick="window.location.href='wing-khoodan.html'">
-            <div class="img-placeholder">Image Coming Soon</div>
-            <div class="card-info">
-                <h3>Khoodan</h3>
-                <h4 class="armenian-text">Խուդան</h4>
-                <p>Enter the Wing →</p>
+        <section class="museum-room" id="room-5">
+             <div class="slideshow-container cycle-4">
+                <div class="slide" style="background-image: url('assets/images/markar-child5-a.jpg');"></div>
             </div>
-        </div>
+            <div class="room-overlay vibe-gold" style="position:relative; z-index:2;">
+                <h1>
+                    <span class="content-en">Name of Child 5</span><span class="content-hy">Անուն 5</span>
+                </h1>
+                <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                    <button class="btn btn-gold" onclick="openBook('book-5')">
+                        <span class="content-en">📖 Read Chronicle</span><span class="content-hy">📖 Կարդալ</span>
+                    </button>
+                    <a href="branch-child5.html" class="btn btn-dark" style="border-color:white; color:white;">
+                        <span class="content-en">Enter Lineage →</span><span class="content-hy">Մուտք Ճյուղ →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-        <div class="pillar-card card-living" onclick="window.location.href='wing-moushegh.html'">
-            <div class="img-placeholder">Image Coming Soon</div>
-            <div class="card-info">
-                <h3>Moushegh</h3>
-                <h4 class="armenian-text">Մուշեղ</h4>
-                <p>Enter the Wing →</p>
+        <section class="museum-room" id="room-6">
+             <div class="slideshow-container cycle-4">
+                <div class="slide" style="background-image: url('assets/images/markar-child6-a.jpg');"></div>
             </div>
-        </div>
+            <div class="room-overlay vibe-gold" style="position:relative; z-index:2;">
+                <h1>
+                    <span class="content-en">Name of Child 6</span><span class="content-hy">Անուն 6</span>
+                </h1>
+                <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                    <button class="btn btn-gold" onclick="openBook('book-6')">
+                        <span class="content-en">📖 Read Chronicle</span><span class="content-hy">📖 Կարդալ</span>
+                    </button>
+                    <a href="branch-child6.html" class="btn btn-dark" style="border-color:white; color:white;">
+                        <span class="content-en">Enter Lineage →</span><span class="content-hy">Մուտք Ճյուղ →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-        <div class="pillar-card card-memorial" onclick="openTribute('Vanik (The Youngest)', 'Born approx 1938. The youngest son, whose memory is preserved as the final pillar of the first generation.')">
-            <div class="memorial-content">
-                <div class="memorial-icon">🕯️</div>
-                <h2 style="font-family: 'Playfair Display', serif;">Vanik</h2>
-                <h3 class="armenian-text" style="font-size:1.2rem; color:#888;">Վանիկ</h3>
-                <p style="font-size:0.9rem; margin-top:10px;">Circa 1938</p>
-                <small style="text-transform:uppercase; letter-spacing:1px; margin-top:20px;">In Memoriam</small>
+        <section class="museum-room" id="room-7">
+            <div class="slideshow-container cycle-4">
+                <div class="slide" style="background-image: url('assets/images/markar-mayrik-a.jpg');"></div>
             </div>
-        </div>
+            <div class="room-overlay vibe-sepia" style="position:relative; z-index:2;">
+                <span class="era-label" style="color:#d4a373">
+                    <span class="content-en">In Loving Memory</span><span class="content-hy">Հիշատակ</span>
+                </span>
+                <h1>
+                    <span class="content-en">Mayrik</span>
+                    <span class="content-hy">Մայրիկ</span>
+                </h1>
+                <p class="content-en">A life remembered with love. Though this branch did not continue, the memory remains eternal.</p>
+                <p class="content-hy">Սիրով հիշվող կյանք։ Թեև այս ճյուղը չշարունակվեց, հիշողությունը մնում է հավերժ։</p>
+                
+                <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                    <button class="btn btn-gold" onclick="openBook('book-7')">
+                        <span class="content-en">📖 Read Chronicle</span><span class="content-hy">📖 Կարդալ</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="museum-room" id="room-8">
+            <div class="slideshow-container cycle-4">
+                <div class="slide" style="background-image: url('assets/images/markar-vanik-a.jpg');"></div>
+            </div>
+            <div class="room-overlay vibe-sepia" style="position:relative; z-index:2;">
+                <span class="era-label" style="color:#d4a373">
+                    <span class="content-en">In Loving Memory</span><span class="content-hy">Հիշատակ</span>
+                </span>
+                <h1>
+                    <span class="content-en">Vanik</span>
+                    <span class="content-hy">Վանիկ</span>
+                </h1>
+                <p class="content-en">Remembered forever in the family story.</p>
+                <p class="content-hy">Հավերժ հիշվող ընտանեկան պատմության մեջ։</p>
+                
+                <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                    <button class="btn btn-gold" onclick="openBook('book-8')">
+                        <span class="content-en">📖 Read Chronicle</span><span class="content-hy">📖 Կարդալ</span>
+                    </button>
+                </div>
+            </div>
+        </section>
 
     </main>
+</div>
 
-    <div id="tribute-modal" class="tribute-modal" onclick="closeTribute()">
-        <div class="tribute-content">
-            <h2 id="tribute-name" style="color:var(--charcoal); font-family: 'Playfair Display', serif;"></h2>
-            <hr style="width:50px; border:2px solid #ccc; margin: 20px auto;">
-            <p id="tribute-text" style="line-height: 1.6; color:#555;"></p>
-            <br>
-            <button class="btn btn-dark" style="background:transparent; color:#333; border:1px solid #ccc;">Close Tribute</button>
+<div id="book-1" class="book-modal">
+    <div class="book-content">
+        <button class="close-book-btn" onclick="closeBook('book-1')">×</button>
+        <div class="content-en">
+            <h2>Life of Child 1</h2><hr><p>Paste biography...</p>
+        </div>
+        <div class="content-hy">
+            <h2>Կենսագրություն 1</h2><hr><p>Տեղադրեք հայերեն կենսագրությունը...</p>
         </div>
     </div>
+</div>
 
-    <div id="founders-modal" class="book-modal">
-        <div class="book-content">
-            <button class="close-book-btn" onclick="closeChronicle()">×</button>
-            <div class="content-en">
-                <h2>Markar & Morvarid: The Chronicle</h2>
-                <hr>
-                <p><em>(This is where the story of Markar and Morvarid will go. From the early days in the village to the migration and the building of the family in Tehran...)</em></p>
-                <p>It is a story of resilience, faith, and the quiet strength of family.</p>
-                </div>
+<div id="book-2" class="book-modal">
+    <div class="book-content">
+        <button class="close-book-btn" onclick="closeBook('book-2')">×</button>
+        <div class="content-en">
+            <h2>Life of Child 2</h2><hr><p>Paste biography...</p>
+        </div>
+        <div class="content-hy">
+            <h2>Կենսագրություն 2</h2><hr><p>Տեղադրեք հայերեն կենսագրությունը...</p>
         </div>
     </div>
+</div>
+
+<div id="book-3" class="book-modal">
+    <div class="book-content">
+        <button class="close-book-btn" onclick="closeBook('book-3')">×</button>
+        <div class="content-en">
+            <h2>Life of Child 3</h2><hr><p>Paste biography...</p>
+        </div>
+        <div class="content-hy">
+            <h2>Կենսագրություն 3</h2><hr><p>Տեղադրեք հայերեն կենսագրությունը...</p>
+        </div>
+    </div>
+</div>
+
+<div id="book-4" class="book-modal">
+    <div class="book-content">
+        <button class="close-book-btn" onclick="closeBook('book-4')">×</button>
+        <div class="content-en">
+            <h2>Life of Child 4</h2><hr><p>Paste biography...</p>
+        </div>
+        <div class="content-hy">
+            <h2>Կենսագրություն 4</h2><hr><p>Տեղադրեք հայերեն կենսագրությունը...</p>
+        </div>
+    </div>
+</div>
+
+<div id="book-5" class="book-modal">
+    <div class="book-content">
+        <button class="close-book-btn" onclick="closeBook('book-5')">×</button>
+        <div class="content-en">
+            <h2>Life of Child 5</h2><hr><p>Paste biography...</p>
+        </div>
+        <div class="content-hy">
+            <h2>Կենսագրություն 5</h2><hr><p>Տեղադրեք հայերեն կենսագրությունը...</p>
+        </div>
+    </div>
+</div>
+
+<div id="book-6" class="book-modal">
+    <div class="book-content">
+        <button class="close-book-btn" onclick="closeBook('book-6')">×</button>
+        <div class="content-en">
+            <h2>Life of Child 6</h2><hr><p>Paste biography...</p>
+        </div>
+        <div class="content-hy">
+            <h2>Կենսագրություն 6</h2><hr><p>Տեղադրեք հայերեն կենսագրությունը...</p>
+        </div>
+    </div>
+</div>
+
+<div id="book-7" class="book-modal">
+    <div class="book-content">
+        <button class="close-book-btn" onclick="closeBook('book-7')">×</button>
+        <div class="content-en">
+            <h2>In Memory of Mayrik</h2><hr><p>Paste story...</p>
+        </div>
+        <div class="content-hy">
+            <h2>Մայրիկի Հիշատակին</h2><hr><p>Տեղադրեք հայերեն պատմությունը...</p>
+        </div>
+    </div>
+</div>
+
+<div id="book-8" class="book-modal">
+    <div class="book-content">
+        <button class="close-book-btn" onclick="closeBook('book-8')">×</button>
+        <div class="content-en">
+            <h2>In Memory of Vanik</h2><hr><p>Paste story...</p>
+        </div>
+        <div class="content-hy">
+            <h2>Վանիկի Հիշատակին</h2><hr><p>Տեղադրեք հայերեն պատմությունը...</p>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
