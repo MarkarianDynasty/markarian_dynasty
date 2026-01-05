@@ -422,7 +422,6 @@ body.lang-hy p { font-size: 1.1rem; line-height: 1.7; }
 }
 
 /* --- ENGINE D: For 11 Photos (Cycle-11) --- */
-/* Total Cycle: 66 seconds (6 seconds per photo) */
 .cycle-11 .slide { animation: fadeZoom11 66s infinite; }
 
 .cycle-11 .slide:nth-child(1) { animation-delay: 0s; }
@@ -440,7 +439,7 @@ body.lang-hy p { font-size: 1.1rem; line-height: 1.7; }
 @keyframes fadeZoom11 {
     0% { opacity: 0; transform: scale(1); }
     1% { opacity: 1; }
-    8% { opacity: 1; }  /* Visible duration */
-    10% { opacity: 0; transform: scale(1.15); } /* Fade out */
+    8% { opacity: 1; }
+    10% { opacity: 0; transform: scale(1.15); }
     100% { opacity: 0; }
 }
