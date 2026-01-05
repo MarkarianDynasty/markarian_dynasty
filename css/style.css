@@ -420,3 +420,27 @@ body.lang-hy p { font-size: 1.1rem; line-height: 1.7; }
     .rotunda-grid { grid-template-columns: 1fr; padding: 20px; }
     .pillar-card { height: 300px; }
 }
+
+/* --- ENGINE D: For 11 Photos (Cycle-11) --- */
+/* Total Cycle: 66 seconds (6 seconds per photo) */
+.cycle-11 .slide { animation: fadeZoom11 66s infinite; }
+
+.cycle-11 .slide:nth-child(1) { animation-delay: 0s; }
+.cycle-11 .slide:nth-child(2) { animation-delay: 6s; }
+.cycle-11 .slide:nth-child(3) { animation-delay: 12s; }
+.cycle-11 .slide:nth-child(4) { animation-delay: 18s; }
+.cycle-11 .slide:nth-child(5) { animation-delay: 24s; }
+.cycle-11 .slide:nth-child(6) { animation-delay: 30s; }
+.cycle-11 .slide:nth-child(7) { animation-delay: 36s; }
+.cycle-11 .slide:nth-child(8) { animation-delay: 42s; }
+.cycle-11 .slide:nth-child(9) { animation-delay: 48s; }
+.cycle-11 .slide:nth-child(10) { animation-delay: 54s; }
+.cycle-11 .slide:nth-child(11) { animation-delay: 60s; }
+
+@keyframes fadeZoom11 {
+    0% { opacity: 0; transform: scale(1); }
+    1% { opacity: 1; }
+    8% { opacity: 1; }  /* Visible duration */
+    10% { opacity: 0; transform: scale(1.15); } /* Fade out */
+    100% { opacity: 0; }
+}
